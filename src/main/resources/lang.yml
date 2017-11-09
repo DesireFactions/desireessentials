@@ -14,12 +14,17 @@ list:
   format: '&6There are currently &e{online} &6out of &e{slots} &6players online.{nl}&6Online Staff: &e{staff}&6.'
 feed:
   self: '&6Your appetite has been sated.'
-  others: '&7You sated the appetite of &c{target}&6.'
+  others: '&6You sated the appetite of &c{target}&6.'
+heal:
+  self: '&6You have healed yourself.'
+  others: '&6You healed &c{target}&6.'
+speed:
+  self: '&6You set your {type} speed to &a{speed}&6.'
+  others: '&6You set &c{target}&6''s {type} speed to &a{speed}&6.'
 gamemode:
   invalid: '&7Invalid gamemode.'
-  set: '&7Set &b{target}&7''s gamemode to &c{gamemode}&7.'
-coords:
-  self: '&7Your coords: &e{x}&7, &e{y}&7, &e{z}&7.'
+  self: '&7Set your gamemode to &c{gamemode}&7.'
+  others: '&7Set &b{target}&7''s gamemode to &c{gamemode}&7.'
 help:
   - '&7&m-------------------------------------'
   - '&9Map Information:'

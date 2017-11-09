@@ -11,11 +11,13 @@ import com.desiremc.core.api.command.CustomCommandHandler;
 import com.desiremc.essentials.commands.BalanceCommand;
 import com.desiremc.essentials.commands.FeedCommand;
 import com.desiremc.essentials.commands.GamemodeCommand;
+import com.desiremc.essentials.commands.HealCommand;
 import com.desiremc.essentials.commands.HelpCommand;
 import com.desiremc.essentials.commands.ListCommand;
 import com.desiremc.essentials.commands.MessageCommand;
 import com.desiremc.essentials.commands.PayCommand;
 import com.desiremc.essentials.commands.RespondCommand;
+import com.desiremc.essentials.commands.SpeedCommand;
 
 import net.milkbowl.vault.economy.Economy;
 
@@ -52,6 +54,8 @@ public class DesireEssentials extends JavaPlugin
         handler.registerCommand(new FeedCommand(), this);
         handler.registerCommand(new HelpCommand(), this);
         handler.registerCommand(new GamemodeCommand(), this);
+        handler.registerCommand(new HealCommand(), this);
+        handler.registerCommand(new SpeedCommand(), this);
     }
 
     private void registerListeners()
@@ -65,7 +69,7 @@ public class DesireEssentials extends JavaPlugin
         {
             econ = Bukkit.getServicesManager().getRegistration(Economy.class).getProvider();
         }
-        return econ;    
+        return econ;
     }
 
     public static FileHandler getConfigHandler()
