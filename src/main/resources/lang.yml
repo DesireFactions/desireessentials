@@ -1,0 +1,31 @@
+balance:
+  self: '&bBalance: &a{balance}'
+  others: '&b{player}''s balance: &a{balance}'
+message:
+  sending: '&8[&7From {rankColor}{player}&8] &7{message}'
+  receiving: '&8[&7To {rankColor}{player}&8] &7{message}'
+  no_last: '&7You have no sent or received a message.'
+economy:
+  too_poor: '&7Your balance is &a{balance}&7. You can''t afford to send &c{amount}&7.'
+pay:
+  sent: '&7Sent &a{amount} &7to &b{player}&7.'
+  received: '&7Received &a{amount} &7from &b{player}&7.'
+list:
+  format: '&6There are currently &e{online} &6out of &e{slots} &6players online.{nl}&6Online Staff: &e{staff}&6.'
+feed:
+  self: '&6Your appetite has been sated.'
+  others: '&7You sated the appetite of &c{target}&6.'
+gamemode:
+  invalid: '&7Invalid gamemode.'
+  set: '&7Set &b{target}&7''s gamemode to &c{gamemode}&7.'
+coords:
+  self: '&7Your coords: &e{x}&7, &e{y}&7, &e{z}&7.'
+help:
+  - '&7&m-------------------------------------'
+  - '&9Map Information:'
+  - '&eCurrent map: &7SOTW commenced Nov 11 @ 3 pm EST'
+  - '&eMap border: &73000'
+  - '&eWarzone until: &7500 '
+  - '&eEnd portals: &71000, 1000 in each quadrant'
+  - '&eEnchant limits: &7Protection 1, Sharpness 1, Power 2'
+  - '&eDeathban: &73 hours'
