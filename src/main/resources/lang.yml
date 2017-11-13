@@ -22,7 +22,7 @@ heal:
   others: '&6You healed &c{target}&6.'
 clearinventory:
   self: '&6You have cleared your inventory.'
-  others: "&6You have cleared &c{target}'s&6 inventory."
+  others: '&6You have cleared &c{target}''s&6 inventory.'
 speed:
   self: '&6You set your {type} speed to &a{speed}&6.'
   others: '&6You set &c{target}&6''s {type} speed to &a{speed}&6.'
