@@ -10,6 +10,8 @@ economy:
 pay:
   sent: '&7Sent &a{amount} &7to &b{player}&7.'
   received: '&7Received &a{amount} &7from &b{player}&7.'
+teleport:
+  self: "&6You have teleported to &c{target}&6."
 list:
   format: '&6There are currently &e{online} &6out of &e{slots} &6players online.{nl}&6Online Staff: &e{staff}&6.'
 feed:
