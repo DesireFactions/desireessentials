@@ -2,8 +2,8 @@ balance:
   self: '&bBalance: &a{balance}'
   others: '&b{player}''s balance: &a{balance}'
 message:
-  sending: '&8[&7From {rankColor}{player}&8] &7{message}'
-  receiving: '&8[&7To {rankColor}{player}&8] &7{message}'
+  sending: '&8[&7To {rankColor}{player}&8] &7{message}'
+  receiving: '&8[&7From {rankColor}{player}&8] &7{message}'
   no_last: '&7You have no sent or received a message.'
 economy:
   too_poor: '&7Your balance is &a{balance}&7. You can''t afford to send &c{amount}&7.'
@@ -18,6 +18,9 @@ feed:
 heal:
   self: '&6You have healed yourself.'
   others: '&6You healed &c{target}&6.'
+clearinventory:
+  self: '&6You have cleared your inventory.'
+  others: "&6You have cleared &c{target}'s&6 inventory."
 speed:
   self: '&6You set your {type} speed to &a{speed}&6.'
   others: '&6You set &c{target}&6''s {type} speed to &a{speed}&6.'

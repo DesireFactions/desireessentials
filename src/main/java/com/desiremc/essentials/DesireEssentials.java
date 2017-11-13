@@ -2,6 +2,7 @@ package com.desiremc.essentials;
 
 import java.io.File;
 
+import com.desiremc.essentials.commands.ClearInventoryCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -56,6 +57,7 @@ public class DesireEssentials extends JavaPlugin
         handler.registerCommand(new GamemodeCommand(), this);
         handler.registerCommand(new HealCommand(), this);
         handler.registerCommand(new SpeedCommand(), this);
+        handler.registerCommand(new ClearInventoryCommand(), this);
     }
 
     private void registerListeners()
