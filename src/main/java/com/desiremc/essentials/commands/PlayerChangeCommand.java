@@ -1,5 +1,6 @@
 package com.desiremc.essentials.commands;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.bukkit.command.CommandSender;
@@ -36,18 +37,14 @@ public abstract class PlayerChangeCommand extends ValidCommand
         {
             p = (Player) args[args.length - 1];
         }
-        Object[] renders = applyChanges(p, Arrays.copyOfRange(args, 0, this.args.length - 1));
-        if (p == sender)
+        ArrayList<Object> renders = new ArrayList<>(Arrays.asList(applyChanges(p, Arrays.copyOfRange(args, 0, this.args.length - 1))));
+        renders.add("{target}");
+        renders.add(p.getName());
+        if (p != sender)
         {
-            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".self",
-                    renders);
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others", renders);
         }
-        else
-        {
-            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others",
-                    "{target}", p.getName(),
-                    renders);
-        }
+        DesireEssentials.getLangHandler().sendRenderMessage(p, name.toLowerCase() + ".self", renders);
     }
 
     public abstract Object[] applyChanges(Player p, Object[] args);
