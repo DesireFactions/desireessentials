@@ -3,9 +3,9 @@ package com.desiremc.essentials.validators;
 import org.bukkit.command.CommandSender;
 
 import com.desiremc.core.api.command.CommandValidator;
-import com.desiremc.core.session.HCFSession;
-import com.desiremc.core.session.HCFSessionHandler;
 import com.desiremc.essentials.DesireEssentials;
+import com.desiremc.hcf.session.HCFSession;
+import com.desiremc.hcf.session.HCFSessionHandler;
 
 public class HasEnoughMoneyValidator extends CommandValidator
 {

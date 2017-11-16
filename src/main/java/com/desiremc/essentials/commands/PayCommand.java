@@ -4,13 +4,13 @@ import org.bukkit.command.CommandSender;
 
 import com.desiremc.core.api.command.ValidCommand;
 import com.desiremc.core.parsers.DoubleParser;
-import com.desiremc.core.parsers.PlayerHCFSessionParser;
-import com.desiremc.core.session.HCFSession;
-import com.desiremc.core.session.HCFSessionHandler;
 import com.desiremc.core.session.Rank;
 import com.desiremc.core.validators.DoubleSizeValidator;
 import com.desiremc.essentials.DesireEssentials;
 import com.desiremc.essentials.validators.HasEnoughMoneyValidator;
+import com.desiremc.hcf.parser.PlayerHCFSessionParser;
+import com.desiremc.hcf.session.HCFSession;
+import com.desiremc.hcf.session.HCFSessionHandler;
 
 public class PayCommand extends ValidCommand
 {
