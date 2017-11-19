@@ -2,6 +2,7 @@ package com.desiremc.essentials.commands;
 
 import com.desiremc.core.session.Rank;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 
 public class ClearInventoryCommand extends PlayerChangeCommand
@@ -14,7 +15,11 @@ public class ClearInventoryCommand extends PlayerChangeCommand
     @Override
     public Object[] applyChanges(Player p, Object[] args)
     {
-        p.getInventory().clear();
+
+        p.getInventory().setContents(new ItemStack[p.getInventory().getContents().length]);
+        p.getInventory().setArmorContents(new ItemStack[p.getInventory().getArmorContents().length]);
+
+        p.updateInventory();
 
         return new Object[] {};
     }
