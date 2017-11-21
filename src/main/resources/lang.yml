@@ -4,7 +4,7 @@ balance:
 message:
   sending: '&8[&7To {rankColor}{player}&8] &7{message}'
   receiving: '&8[&7From {rankColor}{player}&8] &7{message}'
-  no_last: '&7You have no sent or received a message.'
+  no_last: '&7You have not sent or received a message.'
 economy:
   too_poor: '&7Your balance is &a{balance}&7. You can''t afford to send &c{amount}&7.'
 pay:
@@ -12,6 +12,9 @@ pay:
   received: '&7Received &a{amount} &7from &b{player}&7.'
 teleport:
   self: "&6You have teleported to &c{target}&6."
+teleport-here:
+  self: "&6You have teleported &c{target}&6 to you."
+  target: "&6You have been teleported to &c{target}&6."
 list:
   format: '&6There are currently &e{online} &6out of &e{slots} &6players online.{nl}&6Online Staff: &e{staff}&6.'
 feed:

@@ -4,6 +4,7 @@ import java.io.File;
 
 import com.desiremc.essentials.commands.ClearInventoryCommand;
 import com.desiremc.essentials.commands.TeleportCommand;
+import com.desiremc.essentials.commands.TeleportHereCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -60,6 +61,7 @@ public class DesireEssentials extends JavaPlugin
         handler.registerCommand(new SpeedCommand(), this);
         handler.registerCommand(new ClearInventoryCommand(), this);
         handler.registerCommand(new TeleportCommand(), this);
+        handler.registerCommand(new TeleportHereCommand(), this);
     }
 
     private void registerListeners()
