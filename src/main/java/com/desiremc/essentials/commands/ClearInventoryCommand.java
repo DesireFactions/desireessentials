@@ -1,11 +1,9 @@
 package com.desiremc.essentials.commands;
 
 import com.desiremc.core.session.Rank;
-import com.desiremc.essentials.DesireEssentials;
 import com.desiremc.hcf.listener.classes.ClassListener;
 import com.desiremc.hcf.session.HCFSession;
 import com.desiremc.hcf.session.HCFSessionHandler;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
