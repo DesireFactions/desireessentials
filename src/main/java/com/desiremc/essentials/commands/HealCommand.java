@@ -1,5 +1,10 @@
 package com.desiremc.essentials.commands;
 
+import com.desiremc.hcf.DesireHCF;
+import com.desiremc.hcf.listener.classes.ClassListener;
+import com.desiremc.hcf.session.HCFSession;
+import com.desiremc.hcf.session.HCFSessionHandler;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 
@@ -24,6 +29,13 @@ public class HealCommand extends PlayerChangeCommand
         for (PotionEffect effect : p.getActivePotionEffects())
         {
             p.removePotionEffect(effect.getType());
+        }
+
+        HCFSession session = HCFSessionHandler.getHCFSession(p.getUniqueId());
+
+        if(session.getPvpClass() != null)
+        {
+            ClassListener.applyPermanentEffects(session.getPvpClass(), p);
         }
 
         return new Object[] {};
