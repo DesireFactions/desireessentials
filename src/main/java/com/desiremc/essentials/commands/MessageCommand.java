@@ -1,11 +1,5 @@
 package com.desiremc.essentials.commands;
 
-import java.util.HashMap;
-import java.util.UUID;
-
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import com.desiremc.core.api.command.ValidCommand;
 import com.desiremc.core.parsers.PlayerParser;
 import com.desiremc.core.parsers.StringParser;
@@ -14,6 +8,12 @@ import com.desiremc.core.session.Session;
 import com.desiremc.core.session.SessionHandler;
 import com.desiremc.core.validators.NotIgnoringValidator;
 import com.desiremc.essentials.DesireEssentials;
+import org.bukkit.Sound;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import java.util.HashMap;
+import java.util.UUID;
 
 public class MessageCommand extends ValidCommand
 {
@@ -55,6 +55,8 @@ public class MessageCommand extends ValidCommand
                 "{rankColor}", senderSession.getRank().getColor().toString(),
                 "{player}", senderSession.getRank().getColor().toString(),
                 "{message}", message);
+
+        target.playSound(target.getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
     }
     
     public static MessageCommand getInstance()
