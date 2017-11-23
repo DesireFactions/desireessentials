@@ -1,17 +1,10 @@
 package com.desiremc.essentials;
 
-import java.io.File;
-
-import com.desiremc.essentials.commands.ClearInventoryCommand;
-import com.desiremc.essentials.commands.TeleportCommand;
-import com.desiremc.essentials.commands.TeleportHereCommand;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
-
 import com.desiremc.core.api.FileHandler;
 import com.desiremc.core.api.LangHandler;
 import com.desiremc.core.api.command.CustomCommandHandler;
 import com.desiremc.essentials.commands.BalanceCommand;
+import com.desiremc.essentials.commands.ClearInventoryCommand;
 import com.desiremc.essentials.commands.FeedCommand;
 import com.desiremc.essentials.commands.GamemodeCommand;
 import com.desiremc.essentials.commands.HealCommand;
@@ -21,8 +14,14 @@ import com.desiremc.essentials.commands.MessageCommand;
 import com.desiremc.essentials.commands.PayCommand;
 import com.desiremc.essentials.commands.RespondCommand;
 import com.desiremc.essentials.commands.SpeedCommand;
-
+import com.desiremc.essentials.commands.TeleportCommand;
+import com.desiremc.essentials.commands.TeleportHereCommand;
+import com.desiremc.essentials.commands.TeleportPositionCommand;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
 
 public class DesireEssentials extends JavaPlugin
 {
@@ -62,6 +61,7 @@ public class DesireEssentials extends JavaPlugin
         handler.registerCommand(new ClearInventoryCommand(), this);
         handler.registerCommand(new TeleportCommand(), this);
         handler.registerCommand(new TeleportHereCommand(), this);
+        handler.registerCommand(new TeleportPositionCommand(), this);
     }
 
     private void registerListeners()
