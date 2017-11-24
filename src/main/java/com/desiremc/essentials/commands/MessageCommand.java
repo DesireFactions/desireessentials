@@ -53,7 +53,7 @@ public class MessageCommand extends ValidCommand
 
         DesireEssentials.getLangHandler().sendRenderMessage(receiverSession, "message.receiving",
                 "{rankColor}", senderSession.getRank().getColor().toString(),
-                "{player}", senderSession.getRank().getColor().toString(),
+                "{player}", senderSession.getName(),
                 "{message}", message);
 
         target.playSound(target.getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
