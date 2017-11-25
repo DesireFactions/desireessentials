@@ -2,8 +2,6 @@ package com.desiremc.essentials.commands;
 
 import com.desiremc.core.session.Rank;
 import com.desiremc.hcf.listener.classes.ClassListener;
-import com.desiremc.hcf.session.HCFSession;
-import com.desiremc.hcf.session.HCFSessionHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -23,9 +21,7 @@ public class ClearInventoryCommand extends PlayerChangeCommand
 
         p.updateInventory();
 
-        HCFSession session = HCFSessionHandler.getHCFSession(p.getUniqueId());
         ClassListener.updateClass(p, p.getInventory().getHelmet());
-        session.setPvpClass(null);
 
         return new Object[] {};
     }
