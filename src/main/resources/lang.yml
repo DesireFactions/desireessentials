@@ -15,8 +15,10 @@ teleport:
 teleport-here:
   self: "&6You have teleported &c{target}&6 to you."
   target: "&6You have been teleported to &c{target}&6."
-teleport-position:
-  self: "&6You have teleported to &c{x}&6, &c{y}&6, &c{z}&6 in &c{world}&6."
+teleport_position:
+  world: '&6You have teleported to &c{x}&6, &c{y}&6, &c{z}&6 in &c{world}&6.'
+  no_world: '&6You have teleported to &c{x}&6, &c{y}&6, &c{z}&6.'
+  self: 
 list:
   format: '&6There are currently &e{online} &6out of &e{slots} &6players online.{nl}&6Online Staff: &e{staff}&6.'
 feed:
