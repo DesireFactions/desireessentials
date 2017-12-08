@@ -30,7 +30,7 @@ public class ListCommand extends ValidCommand
     {
         StringBuilder sb = new StringBuilder();
 
-        for (Session s : SessionHandler.getInstance().getStaff())
+        for (Session s : SessionHandler.getStaff())
         {
             sb.append("§e" + s.getName() + ", ");
         }
