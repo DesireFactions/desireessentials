@@ -11,16 +11,17 @@ pay:
   sent: '&7Sent &a{amount} &7to &b{player}&7.'
   received: '&7Received &a{amount} &7from &b{player}&7.'
 teleport:
-  self: "&6You have teleported to &c{target}&6."
+  self: '&6You have teleported to &c{target}&6.'
 teleport-here:
-  self: "&6You have teleported &c{target}&6 to you."
-  target: "&6You have been teleported to &c{target}&6."
+  self: '&6You have teleported &c{target}&6 to you.'
+  target: '&6You have been teleported to &c{target}&6.'
 teleport_position:
   world: '&6You have teleported to &c{x}&6, &c{y}&6, &c{z}&6 in &c{world}&6.'
   no_world: '&6You have teleported to &c{x}&6, &c{y}&6, &c{z}&6.'
-  self: 
+  self: null
 list:
-  format: '&6There are currently &e{online} &6out of &e{slots} &6players online.{nl}&6Online Staff: &e{staff}&6.'
+  format: '&6There are currently &e{online} &6out of &e{slots} &6players online.{nl}&6Online
+    Staff: &e{staff}&6.'
 feed:
   self: '&6Your appetite has been sated.'
   others: '&6You sated the appetite of &c{target}&6.'
@@ -46,3 +47,4 @@ help:
   - '&eEnd portals: &71000, 1000 in each quadrant'
   - '&eEnchant limits: &7Protection 1, Sharpness 1, Power 2'
   - '&eDeathban: &73 hours'
+weather: '&7Set the weather to &e{weather}&7 in &e{worlds}&7 for &e{duration}&7.'

@@ -1,8 +1,14 @@
 package com.desiremc.essentials;
 
+import java.io.File;
+
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
+
 import com.desiremc.core.api.FileHandler;
 import com.desiremc.core.api.LangHandler;
 import com.desiremc.core.api.command.CustomCommandHandler;
+import com.desiremc.core.api.newcommands.CommandHandler;
 import com.desiremc.essentials.commands.BalanceCommand;
 import com.desiremc.essentials.commands.ClearInventoryCommand;
 import com.desiremc.essentials.commands.FeedCommand;
@@ -17,11 +23,11 @@ import com.desiremc.essentials.commands.SpeedCommand;
 import com.desiremc.essentials.commands.TeleportCommand;
 import com.desiremc.essentials.commands.TeleportHereCommand;
 import com.desiremc.essentials.commands.TeleportPositionCommand;
-import net.milkbowl.vault.economy.Economy;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
+import com.desiremc.essentials.commands.weather.WeatherClearCommand;
+import com.desiremc.essentials.commands.weather.WeatherCommand;
+import com.desiremc.essentials.commands.weather.WeatherDownfallCommand;
 
-import java.io.File;
+import net.milkbowl.vault.economy.Economy;
 
 public class DesireEssentials extends JavaPlugin
 {
@@ -47,21 +53,26 @@ public class DesireEssentials extends JavaPlugin
 
     private void registerCommands()
     {
-        CustomCommandHandler handler = CustomCommandHandler.getInstance();
-        handler.registerCommand(new BalanceCommand(), this);
-        handler.registerCommand(new ListCommand(), this);
-        handler.registerCommand(new MessageCommand(), this);
-        handler.registerCommand(new PayCommand(), this);
-        handler.registerCommand(new RespondCommand(), this);
-        handler.registerCommand(new FeedCommand(), this);
-        handler.registerCommand(new HelpCommand(), this);
-        handler.registerCommand(new GamemodeCommand(), this);
-        handler.registerCommand(new HealCommand(), this);
-        handler.registerCommand(new SpeedCommand(), this);
-        handler.registerCommand(new ClearInventoryCommand(), this);
-        handler.registerCommand(new TeleportCommand(), this);
-        handler.registerCommand(new TeleportHereCommand(), this);
-        handler.registerCommand(new TeleportPositionCommand(), this);
+        CustomCommandHandler customCommandHandler = CustomCommandHandler.getInstance();
+        customCommandHandler.registerCommand(new BalanceCommand(), this);
+        customCommandHandler.registerCommand(new MessageCommand(), this);
+        customCommandHandler.registerCommand(new PayCommand(), this);
+        customCommandHandler.registerCommand(new RespondCommand(), this);
+        customCommandHandler.registerCommand(new FeedCommand(), this);
+        customCommandHandler.registerCommand(new HelpCommand(), this);
+        customCommandHandler.registerCommand(new GamemodeCommand(), this);
+        customCommandHandler.registerCommand(new HealCommand(), this);
+        customCommandHandler.registerCommand(new SpeedCommand(), this);
+        customCommandHandler.registerCommand(new ClearInventoryCommand(), this);
+        customCommandHandler.registerCommand(new TeleportCommand(), this);
+        customCommandHandler.registerCommand(new TeleportHereCommand(), this);
+        customCommandHandler.registerCommand(new TeleportPositionCommand(), this);
+
+        CommandHandler commandHandler = CommandHandler.getInstance();
+        commandHandler.registerCommand(new ListCommand(), this);
+        commandHandler.registerCommand(new WeatherCommand(), this);
+        commandHandler.registerCommand(new WeatherClearCommand(), this);
+        commandHandler.registerCommand(new WeatherDownfallCommand(), this);
     }
 
     private void registerListeners()
