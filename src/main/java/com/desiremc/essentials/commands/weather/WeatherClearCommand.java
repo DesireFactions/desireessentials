@@ -41,7 +41,7 @@ public class WeatherClearCommand extends ValidCommand
     public void validRun(Session sender, String[] label, List<CommandArgument<?>> arguments)
     {
         List<World> worlds = new ArrayList<>();
-        int duration = arguments.get(0).hasValue() ? (int) arguments.get(0).getValue() : DesireEssentials.getConfigHandler().getInteger("weather.default_duration") * 1000;
+        int duration = arguments.get(0).hasValue() ? (Integer) arguments.get(0).getValue() : DesireEssentials.getConfigHandler().getInteger("weather.default_duration") * 1000;
         if (arguments.get(1).hasValue())
         {
             worlds.add((World) arguments.get(1).getValue());
