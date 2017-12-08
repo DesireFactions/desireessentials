@@ -43,12 +43,24 @@ public class DesireEssentials extends JavaPlugin
     {
         instance = this;
 
-        saveResource("lang.yml", false);
-
-        lang = new LangHandler(new File(getDataFolder(), "lang.yml"), this);
-
+        registerFiles();
         registerCommands();
         registerListeners();
+    }
+
+    private void registerFiles()
+    {
+        // make sure the lang file does not exist before trying to save it.
+        File langFile = new File(getDataFolder(), "lang.yml");
+        if (!langFile.exists())
+        {
+            saveResource("lang.yml", false);
+        }
+        lang = new LangHandler(langFile, this);
+
+        // this performs the check for us, don't need to do the same as lang.
+        saveDefaultConfig();
+        config = new FileHandler(new File(getDataFolder(), "config.yml"), this);
     }
 
     private void registerCommands()
