@@ -1,9 +1,11 @@
 package com.desiremc.essentials.commands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
+import java.util.List;
 
-import com.desiremc.core.api.command.ValidCommand;
+import org.bukkit.Bukkit;
+
+import com.desiremc.core.api.newcommands.CommandArgument;
+import com.desiremc.core.api.newcommands.ValidCommand;
 import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
 import com.desiremc.core.session.SessionHandler;
@@ -14,11 +16,11 @@ public class ListCommand extends ValidCommand
 
     public ListCommand()
     {
-        super("list", "List online players.", Rank.GUEST, new String[] {}, new String[] { "who" });
+        super("list", "List online players.", Rank.GUEST, new String[] { "who", "ls" });
     }
 
     @Override
-    public void validRun(CommandSender sender, String label, Object... args)
+    public void validRun(Session sender, String[] label, List<CommandArgument<?>> arguments)
     {
         DesireEssentials.getLangHandler().sendRenderMessage(sender, "list.format",
                 "{online}", Bukkit.getOnlinePlayers().size(),
