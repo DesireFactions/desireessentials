@@ -14,7 +14,7 @@ public class TeleportCommand extends ValidCommand
 
     public TeleportCommand()
     {
-        super("teleport", "Teleport to another player", Rank.JRMOD, ARITY_REQUIRED_VARIADIC, new String[] { "target" }, "tp");
+        super("teleport", "Teleport to another player", Rank.HELPER, ARITY_REQUIRED_VARIADIC, new String[] {"target"}, "tp");
 
         addParser(new PlayerParser(), "target");
         addValidator(new PlayerValidator());

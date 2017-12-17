@@ -1,10 +1,5 @@
 package com.desiremc.essentials;
 
-import java.io.File;
-
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
-
 import com.desiremc.core.api.FileHandler;
 import com.desiremc.core.api.LangHandler;
 import com.desiremc.core.api.command.CustomCommandHandler;
@@ -26,8 +21,11 @@ import com.desiremc.essentials.commands.TeleportPositionCommand;
 import com.desiremc.essentials.commands.weather.WeatherClearCommand;
 import com.desiremc.essentials.commands.weather.WeatherCommand;
 import com.desiremc.essentials.commands.weather.WeatherDownfallCommand;
-
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
 
 public class DesireEssentials extends JavaPlugin
 {
@@ -67,9 +65,7 @@ public class DesireEssentials extends JavaPlugin
     {
         CustomCommandHandler customCommandHandler = CustomCommandHandler.getInstance();
         customCommandHandler.registerCommand(new BalanceCommand(), this);
-        customCommandHandler.registerCommand(new MessageCommand(), this);
         customCommandHandler.registerCommand(new PayCommand(), this);
-        customCommandHandler.registerCommand(new RespondCommand(), this);
         customCommandHandler.registerCommand(new FeedCommand(), this);
         customCommandHandler.registerCommand(new HelpCommand(), this);
         customCommandHandler.registerCommand(new GamemodeCommand(), this);
@@ -85,6 +81,8 @@ public class DesireEssentials extends JavaPlugin
         commandHandler.registerCommand(new WeatherCommand(), this);
         commandHandler.registerCommand(new WeatherClearCommand(), this);
         commandHandler.registerCommand(new WeatherDownfallCommand(), this);
+        commandHandler.registerCommand(new MessageCommand(), this);
+        commandHandler.registerCommand(new RespondCommand(), this);
     }
 
     private void registerListeners()

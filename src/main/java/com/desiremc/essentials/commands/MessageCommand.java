@@ -1,67 +1,51 @@
 package com.desiremc.essentials.commands;
 
-import com.desiremc.core.api.command.ValidCommand;
-import com.desiremc.core.parsers.PlayerParser;
-import com.desiremc.core.parsers.StringParser;
+import com.desiremc.core.api.newcommands.CommandArgument;
+import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
+import com.desiremc.core.api.newcommands.ValidCommand;
+import com.desiremc.core.newparsers.SessionParser;
+import com.desiremc.core.newparsers.StringParser;
 import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
-import com.desiremc.core.session.SessionHandler;
-import com.desiremc.core.validators.NotIgnoringValidator;
 import com.desiremc.essentials.DesireEssentials;
 import org.bukkit.Sound;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class MessageCommand extends ValidCommand
 {
 
-    private static MessageCommand instance;
-    
     public static HashMap<UUID, UUID> history = new HashMap<>();
 
     public MessageCommand()
     {
-        super("message", "Message another player", Rank.GUEST, ARITY_REQUIRED_VARIADIC, new String[] { "target", "message" }, new String[] { "msg", "m", "tell", "whisper", "whisp", "w", "t" });
+        super("message", "Message another player", Rank.GUEST, new String[] {"msg"});
 
-        instance = this;
-        
-        addParser(new PlayerParser(), "target");
-        addParser(new StringParser(), "message");
-
-        addValidator(new NotIgnoringValidator(), "target");
+        addArgument(CommandArgumentBuilder.createBuilder(Session.class).setName("target").setParser(new SessionParser()).build());
+        addArgument(CommandArgumentBuilder.createBuilder(String.class).setName("message").setParser(new StringParser()).build());
     }
 
     @Override
-    public void validRun(CommandSender sender, String label, Object... args)
+    public void validRun(Session sender, String[] label, List<CommandArgument<?>> args)
     {
-        Player target = (Player) args[0];
-        String message = (String) args[1];
+        Session target = (Session) args.get(0).getValue();
+        String message = (String) args.get(1).getValue();
 
-        Session senderSession = SessionHandler.getSession(sender);
-        Session receiverSession = SessionHandler.getSession(target);
-
-        history.put(senderSession.getUniqueId(), receiverSession.getUniqueId());
-        history.put(receiverSession.getUniqueId(), senderSession.getUniqueId());
+        history.put(sender.getUniqueId(), target.getUniqueId());
+        history.put(target.getUniqueId(), sender.getUniqueId());
 
         DesireEssentials.getLangHandler().sendRenderMessage(sender, "message.sending",
-                "{rankColor}", receiverSession.getRank().getColor().toString(),
-                "{player}", receiverSession.getName(),
+                "{rankColor}", target.getRank().getColor().toString(),
+                "{player}", target.getName(),
                 "{message}", message);
 
-        DesireEssentials.getLangHandler().sendRenderMessage(receiverSession, "message.receiving",
-                "{rankColor}", senderSession.getRank().getColor().toString(),
-                "{player}", senderSession.getName(),
+        DesireEssentials.getLangHandler().sendRenderMessage(target, "message.receiving",
+                "{rankColor}", sender.getRank().getColor().toString(),
+                "{player}", sender.getName(),
                 "{message}", message);
 
-        target.playSound(target.getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
+        target.getPlayer().playSound(target.getPlayer().getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
     }
-    
-    public static MessageCommand getInstance()
-    {
-        return instance;
-    }
-
 }

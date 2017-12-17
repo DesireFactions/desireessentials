@@ -1,24 +1,51 @@
 package com.desiremc.essentials.commands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
-
-import com.desiremc.core.api.command.ValidCommand;
+import com.desiremc.core.api.newcommands.CommandArgument;
+import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
+import com.desiremc.core.api.newcommands.ValidCommand;
+import com.desiremc.core.newparsers.StringParser;
 import com.desiremc.core.session.Rank;
+import com.desiremc.core.session.Session;
+import com.desiremc.core.session.SessionHandler;
 import com.desiremc.core.utils.PlayerUtils;
+import com.desiremc.essentials.DesireEssentials;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
+
+import java.util.List;
 
 public class RespondCommand extends ValidCommand
 {
 
     public RespondCommand()
     {
-        super("respond", "Respond to a message.", Rank.GUEST, ARITY_REQUIRED_VARIADIC, new String[] { "message" }, new String[] { "r", "resp" });
+        super("respond", "Respond to a message.", Rank.GUEST, new String[] {"r", "reply"});
+
+        addArgument(CommandArgumentBuilder.createBuilder(String.class).setName("message").setParser(new StringParser()).build());
     }
 
     @Override
-    public void validRun(CommandSender sender, String label, Object... args)
+    public void validRun(Session sender, String[] label, List<CommandArgument<?>> args)
     {
-        MessageCommand.getInstance().validRun(sender, label, new Object[] { Bukkit.getPlayer(MessageCommand.history.get(PlayerUtils.getUUIDFromSender(sender))), args[0] });
+        Player target = PlayerUtils.getPlayer(MessageCommand.history.get(sender.getUniqueId()));
+        String message = (String) args.get(0).getValue();
+
+        Session receiverSession = SessionHandler.getSession(target);
+
+        MessageCommand.history.put(sender.getUniqueId(), receiverSession.getUniqueId());
+        MessageCommand.history.put(receiverSession.getUniqueId(), sender.getUniqueId());
+
+        DesireEssentials.getLangHandler().sendRenderMessage(sender, "message.sending",
+                "{rankColor}", receiverSession.getRank().getColor().toString(),
+                "{player}", receiverSession.getName(),
+                "{message}", message);
+
+        DesireEssentials.getLangHandler().sendRenderMessage(receiverSession, "message.receiving",
+                "{rankColor}", sender.getRank().getColor().toString(),
+                "{player}", sender.getName(),
+                "{message}", message);
+
+        target.playSound(target.getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
     }
 
 }

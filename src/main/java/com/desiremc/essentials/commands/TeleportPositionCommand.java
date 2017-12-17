@@ -1,22 +1,21 @@
 package com.desiremc.essentials.commands;
 
-import org.bukkit.Location;
-import org.bukkit.World;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import com.desiremc.core.api.command.ValidCommand;
 import com.desiremc.core.parsers.DoubleParser;
 import com.desiremc.core.parsers.WorldParser;
 import com.desiremc.core.session.Rank;
 import com.desiremc.core.validators.PlayerValidator;
 import com.desiremc.essentials.DesireEssentials;
+import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class TeleportPositionCommand extends ValidCommand
 {
     public TeleportPositionCommand()
     {
-        super("teleportposition", "Teleport to another position", Rank.JRMOD, ARITY_OPTIONAL, new String[] { "x", "y", "z", "world" }, "tppos");
+        super("teleportposition", "Teleport to another position", Rank.HELPER, ARITY_OPTIONAL, new String[] {"x", "y", "z", "world"}, "tppos");
 
         addParser(new DoubleParser(), "x");
         addParser(new DoubleParser(), "y");
