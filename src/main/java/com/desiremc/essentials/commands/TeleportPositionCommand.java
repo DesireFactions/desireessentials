@@ -45,7 +45,7 @@ public class TeleportPositionCommand extends ValidCommand
     @Override
     public void validRun(Session sender, String[] label, List<CommandArgument<?>> arguments)
     {
-        Player player = (Player) sender;
+        Player player = sender.getPlayer();
 
         double x = Double.parseDouble((String) arguments.get(0).getValue());
         double y = Double.parseDouble((String) arguments.get(1).getValue());

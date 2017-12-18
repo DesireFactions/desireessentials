@@ -31,9 +31,9 @@ public class FeedCommand extends ValidCommand
     {
         Player player;
 
-        if (arguments.get(1).hasValue())
+        if (arguments.get(0).hasValue())
         {
-            player = (Player) arguments.get(1).getValue();
+            player = (Player) arguments.get(0).getValue();
         }
         else
         {
@@ -42,7 +42,8 @@ public class FeedCommand extends ValidCommand
 
         if (player != sender.getSender())
         {
-            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others");
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others",
+                    "{target}", player.getName());
         }
         DesireEssentials.getLangHandler().sendRenderMessage(player, name.toLowerCase() + ".self");
 

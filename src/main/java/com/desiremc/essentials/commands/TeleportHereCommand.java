@@ -29,7 +29,7 @@ public class TeleportHereCommand extends ValidCommand
     public void validRun(Session sender, String[] label, List<CommandArgument<?>> arguments)
     {
         Player target = (Player) arguments.get(0).getValue();
-        Player player = (Player) sender;
+        Player player = sender.getPlayer();
 
         target.teleport(player);
 

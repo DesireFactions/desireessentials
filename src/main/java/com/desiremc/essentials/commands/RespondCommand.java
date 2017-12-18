@@ -9,6 +9,7 @@ import com.desiremc.core.session.Session;
 import com.desiremc.core.session.SessionHandler;
 import com.desiremc.core.utils.PlayerUtils;
 import com.desiremc.essentials.DesireEssentials;
+import com.desiremc.essentials.validators.HasMessageHistory;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
@@ -21,7 +22,13 @@ public class RespondCommand extends ValidCommand
     {
         super("respond", "Respond to a message.", Rank.GUEST, new String[] {"r", "reply"});
 
-        addArgument(CommandArgumentBuilder.createBuilder(String.class).setName("message").setParser(new StringParser()).build());
+        addSenderValidator(new HasMessageHistory());
+
+        addArgument(CommandArgumentBuilder.createBuilder(String.class)
+                .setName("message")
+                .setParser(new StringParser())
+                .build());
+
     }
 
     @Override

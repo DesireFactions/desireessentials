@@ -1,8 +1,5 @@
 package com.desiremc.essentials.commands.weather;
 
-import org.bukkit.Bukkit;
-import org.bukkit.World;
-
 import com.desiremc.core.api.newcommands.CommandArgument;
 import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
 import com.desiremc.core.api.newcommands.ValidCommand;
@@ -12,12 +9,14 @@ import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
 import com.desiremc.core.utils.DateUtils;
 import com.desiremc.essentials.DesireEssentials;
-
-import static com.desiremc.essentials.commands.weather.WeatherCommand.worldsString;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static com.desiremc.essentials.commands.weather.WeatherCommand.worldsString;
 
 public class WeatherDownfallCommand extends ValidCommand
 {
@@ -26,7 +25,7 @@ public class WeatherDownfallCommand extends ValidCommand
     {
         super("downfall", "Sets the weather to downfall.", Rank.ADMIN, new String[] { "rain", "storm" });
 
-        addArgument(CommandArgumentBuilder.createBuilder(Number.class)
+        addArgument(CommandArgumentBuilder.createBuilder(Long.class)
                 .setName("length")
                 .setParser(new TimeParser())
                 .setOptional()

@@ -1,11 +1,5 @@
 package com.desiremc.essentials.commands.weather;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.bukkit.Bukkit;
-import org.bukkit.World;
-
 import com.desiremc.core.api.newcommands.CommandArgument;
 import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
 import com.desiremc.core.api.newcommands.ValidCommand;
@@ -15,6 +9,12 @@ import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
 import com.desiremc.core.utils.DateUtils;
 import com.desiremc.essentials.DesireEssentials;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.desiremc.essentials.commands.weather.WeatherCommand.worldsString;
 
 public class WeatherClearCommand extends ValidCommand
@@ -24,7 +24,7 @@ public class WeatherClearCommand extends ValidCommand
     {
         super("clear", "Sets the weather to clear.", Rank.ADMIN, new String[] { "sun", "sky" });
 
-        addArgument(CommandArgumentBuilder.createBuilder(Number.class)
+        addArgument(CommandArgumentBuilder.createBuilder(Long.class)
                 .setName("length")
                 .setParser(new TimeParser())
                 .setOptional()

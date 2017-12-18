@@ -38,7 +38,7 @@ public class BalanceCommand extends ValidCommand
         else
         {
             session = (HCFSession) args.get(0).getValue();
-            DesireEssentials.getLangHandler().sendRenderMessage(session.getPlayer(), "balance.others", "{balance}", DesireEssentials.getEconomy().getBalance(session.getPlayer()), "{player}", session.getName());
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, "balance.others", "{balance}", DesireEssentials.getEconomy().getBalance(session.getName()), "{player}", session.getName());
         }
 
     }

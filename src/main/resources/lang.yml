@@ -51,3 +51,5 @@ help:
   - '&eDiscord: &7https://discord.gg/n7f3rUd'
   - '&eReddit: &7reddit.com/r/desiremc'
 weather: '&7Set the weather to &e{weather}&7 in &e{worlds}&7 for &e{duration}&7.'
+respond:
+  no_one: '&7You have no one to reply to.'

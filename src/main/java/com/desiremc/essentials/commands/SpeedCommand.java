@@ -39,6 +39,7 @@ public class SpeedCommand extends ValidCommand
     {
         Player player;
         int speed = Integer.parseInt((String) arguments.get(0).getValue());
+
         if (arguments.get(1).hasValue())
         {
             player = (Player) arguments.get(1).getValue();
@@ -64,7 +65,8 @@ public class SpeedCommand extends ValidCommand
         {
             DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others",
                     "{speed}", speed,
-                    "{type}", type);
+                    "{type}", type,
+                    "{target}", player.getName());
         }
         DesireEssentials.getLangHandler().sendRenderMessage(player, name.toLowerCase() + ".self",
                 "{speed}", speed,

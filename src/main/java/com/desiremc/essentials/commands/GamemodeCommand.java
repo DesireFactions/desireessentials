@@ -8,6 +8,7 @@ import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
 import com.desiremc.essentials.DesireEssentials;
 import com.desiremc.essentials.parsers.GamemodeParser;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
@@ -37,6 +38,7 @@ public class GamemodeCommand extends ValidCommand
     public void validRun(Session sender, String[] label, List<CommandArgument<?>> arguments)
     {
         Player player;
+        GameMode gameMode = (GameMode) arguments.get(0).getValue();
 
         if (arguments.get(1).hasValue())
         {
@@ -49,11 +51,14 @@ public class GamemodeCommand extends ValidCommand
 
         if (player != sender.getSender())
         {
-            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others");
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others",
+                    "{gamemode}", StringUtils.capitalize(gameMode.name().toLowerCase()),
+                    "{target}", player.getName());
         }
-        DesireEssentials.getLangHandler().sendRenderMessage(player, name.toLowerCase() + ".self");
+        DesireEssentials.getLangHandler().sendRenderMessage(player, name.toLowerCase() + ".self",
+                "{gamemode}", StringUtils.capitalize(gameMode.name().toLowerCase()));
 
-        player.setGameMode((GameMode) arguments.get(0).getValue());
+        player.setGameMode(gameMode);
     }
 
 }
