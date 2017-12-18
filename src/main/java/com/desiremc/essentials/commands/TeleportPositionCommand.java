@@ -1,38 +1,55 @@
 package com.desiremc.essentials.commands;
 
-import com.desiremc.core.api.command.ValidCommand;
-import com.desiremc.core.parsers.DoubleParser;
-import com.desiremc.core.parsers.WorldParser;
+import com.desiremc.core.api.newcommands.CommandArgument;
+import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
+import com.desiremc.core.api.newcommands.ValidCommand;
+import com.desiremc.core.newparsers.IntegerParser;
+import com.desiremc.core.newparsers.WorldParser;
 import com.desiremc.core.session.Rank;
-import com.desiremc.core.validators.PlayerValidator;
+import com.desiremc.core.session.Session;
 import com.desiremc.essentials.DesireEssentials;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.List;
 
 public class TeleportPositionCommand extends ValidCommand
 {
     public TeleportPositionCommand()
     {
-        super("teleportposition", "Teleport to another position", Rank.HELPER, ARITY_OPTIONAL, new String[] {"x", "y", "z", "world"}, "tppos");
+        super("teleportposition", "Teleport to another position", Rank.HELPER, true, new String[] {"tppos"});
 
-        addParser(new DoubleParser(), "x");
-        addParser(new DoubleParser(), "y");
-        addParser(new DoubleParser(), "z");
-        addParser(new WorldParser(), "world");
+        addArgument(CommandArgumentBuilder.createBuilder(Integer.class)
+                .setName("x")
+                .setParser(new IntegerParser())
+                .build());
 
-        addValidator(new PlayerValidator());
+        addArgument(CommandArgumentBuilder.createBuilder(Integer.class)
+                .setName("y")
+                .setParser(new IntegerParser())
+                .build());
+
+        addArgument(CommandArgumentBuilder.createBuilder(Integer.class)
+                .setName("x")
+                .setParser(new IntegerParser())
+                .build());
+
+        addArgument(CommandArgumentBuilder.createBuilder(World.class)
+                .setName("world")
+                .setParser(new WorldParser())
+                .setOptional()
+                .build());
     }
 
     @Override
-    public void validRun(CommandSender sender, String label, Object... args)
+    public void validRun(Session sender, String[] label, List<CommandArgument<?>> arguments)
     {
         Player player = (Player) sender;
 
-        double x = (double) args[0];
-        double y = (double) args[1];
-        double z = (double) args[2];
+        double x = Double.parseDouble((String) arguments.get(0).getValue());
+        double y = Double.parseDouble((String) arguments.get(1).getValue());
+        double z = Double.parseDouble((String) arguments.get(2).getValue());
 
         Location loc = player.getLocation().clone();
 
@@ -40,14 +57,14 @@ public class TeleportPositionCommand extends ValidCommand
         loc.setY(y);
         loc.setZ(z);
 
-        if (args.length > 3)
+        if (arguments.size() > 3)
         {
-            loc.setWorld((World) args[3]);
+            loc.setWorld((World) arguments.get(3).getValue());
         }
 
         player.teleport(loc);
 
-        if (args.length > 3)
+        if (arguments.size() > 3)
         {
             DesireEssentials.getLangHandler().sendRenderMessage(player, "teleport_position.world", "{x}", loc.getX(), "{y}", loc.getY(), "{z}", loc.getZ(), "{world}", loc.getWorld().getName());
         }

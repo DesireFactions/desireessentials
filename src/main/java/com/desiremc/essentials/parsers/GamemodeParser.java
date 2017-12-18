@@ -1,33 +1,39 @@
 package com.desiremc.essentials.parsers;
 
-import java.util.Arrays;
-
-import org.bukkit.GameMode;
-import org.bukkit.command.CommandSender;
-
-import com.desiremc.core.api.command.ArgumentParser;
+import com.desiremc.core.api.newcommands.Parser;
+import com.desiremc.core.session.Session;
 import com.desiremc.essentials.DesireEssentials;
+import org.bukkit.GameMode;
 
-public class GamemodeParser implements ArgumentParser
+import java.util.Arrays;
+import java.util.List;
+
+public class GamemodeParser implements Parser<GameMode>
 {
 
     @Override
-    public Object parseArgument(CommandSender sender, String label, String arg)
+    public GameMode parseArgument(Session sender, String[] label, String rawArgument)
     {
-        if (Arrays.asList(new String[] { "0", "surv", "s", "survival" }).contains(arg))
+        if (Arrays.asList(new String[] {"0", "surv", "s", "survival"}).contains(rawArgument))
         {
             return GameMode.SURVIVAL;
         }
-        else if (Arrays.asList(new String[] { "1", "creative", "c" }).contains(arg))
+        else if (Arrays.asList(new String[] {"1", "creative", "c"}).contains(rawArgument))
         {
             return GameMode.CREATIVE;
         }
-        else if (Arrays.asList(new String[] { "2", "adventure", "a" }).contains(arg))
+        else if (Arrays.asList(new String[] {"2", "adventure", "a"}).contains(rawArgument))
         {
             return GameMode.ADVENTURE;
         }
 
         DesireEssentials.getLangHandler().sendRenderMessage(sender, "gamemode.invalid");
+        return null;
+    }
+
+    @Override
+    public List<String> getRecommendations(Session sender, String lastWord)
+    {
         return null;
     }
 

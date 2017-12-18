@@ -1,27 +1,59 @@
 package com.desiremc.essentials.commands;
 
+import com.desiremc.core.api.newcommands.CommandArgument;
+import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
+import com.desiremc.core.api.newcommands.ValidCommand;
+import com.desiremc.core.newparsers.PlayerParser;
+import com.desiremc.core.session.Rank;
+import com.desiremc.core.session.Session;
+import com.desiremc.essentials.DesireEssentials;
+import com.desiremc.essentials.parsers.GamemodeParser;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
-import com.desiremc.core.session.Rank;
-import com.desiremc.essentials.parsers.GamemodeParser;
+import java.util.List;
 
-public class GamemodeCommand extends PlayerChangeCommand
+public class GamemodeCommand extends ValidCommand
 {
 
     public GamemodeCommand()
     {
-        super("gamemode", "Changes your gamemode.", Rank.ADMIN, new String[] { "gamemode" }, new String[] { "gm" });
+        super("gamemode", "Changes your gamemode.", Rank.ADMIN, new String[] {"gm"});
 
-        addParser(new GamemodeParser(), "gamemode");
+        addArgument(CommandArgumentBuilder.createBuilder(GameMode.class)
+                .setName("gamemode")
+                .setParser(new GamemodeParser())
+                .build());
+
+        addArgument(CommandArgumentBuilder.createBuilder(Player.class)
+                .setName("target")
+                .setParser(new PlayerParser())
+                .setAllowsConsole()
+                .setOptional()
+                .build());
     }
 
     @Override
-    public Object[] applyChanges(Player p, Object[] args)
+    public void validRun(Session sender, String[] label, List<CommandArgument<?>> arguments)
     {
-        GameMode mode = (GameMode) args[0];
-        p.setGameMode(mode);
-        return new String[] { "{gamemode}", mode.name().toLowerCase() };
+        Player player;
+
+        if (arguments.get(1).hasValue())
+        {
+            player = (Player) arguments.get(1).getValue();
+        }
+        else
+        {
+            player = sender.getPlayer();
+        }
+
+        if (player != sender.getSender())
+        {
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others");
+        }
+        DesireEssentials.getLangHandler().sendRenderMessage(player, name.toLowerCase() + ".self");
+
+        player.setGameMode((GameMode) arguments.get(0).getValue());
     }
 
 }

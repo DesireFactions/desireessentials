@@ -1,29 +1,34 @@
 package com.desiremc.essentials.commands;
 
-
-import com.desiremc.core.api.command.ValidCommand;
-import com.desiremc.core.parsers.PlayerParser;
+import com.desiremc.core.api.newcommands.CommandArgument;
+import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
+import com.desiremc.core.api.newcommands.ValidCommand;
+import com.desiremc.core.newparsers.PlayerParser;
 import com.desiremc.core.session.Rank;
-import com.desiremc.core.validators.PlayerValidator;
+import com.desiremc.core.session.Session;
 import com.desiremc.essentials.DesireEssentials;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.List;
 
 public class TeleportCommand extends ValidCommand
 {
 
     public TeleportCommand()
     {
-        super("teleport", "Teleport to another player", Rank.HELPER, ARITY_REQUIRED_VARIADIC, new String[] {"target"}, "tp");
+        super("teleport", "Teleport to another player", Rank.HELPER, true, new String[] {"tp"});
 
-        addParser(new PlayerParser(), "target");
-        addValidator(new PlayerValidator());
+        addArgument(CommandArgumentBuilder.createBuilder(Player.class)
+                .setName("target")
+                .setParser(new PlayerParser())
+                .setAllowsConsole()
+                .build());
     }
 
     @Override
-    public void validRun(CommandSender sender, String label, Object... args)
+    public void validRun(Session sender, String[] label, List<CommandArgument<?>> arguments)
     {
-        Player target = (Player) args[0];
+        Player target = (Player) arguments.get(0).getValue();
         Player player = (Player) sender;
 
         player.teleport(target);

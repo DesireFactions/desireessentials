@@ -2,7 +2,6 @@ package com.desiremc.essentials;
 
 import com.desiremc.core.api.FileHandler;
 import com.desiremc.core.api.LangHandler;
-import com.desiremc.core.api.command.CustomCommandHandler;
 import com.desiremc.core.api.newcommands.CommandHandler;
 import com.desiremc.essentials.commands.BalanceCommand;
 import com.desiremc.essentials.commands.ClearInventoryCommand;
@@ -63,17 +62,6 @@ public class DesireEssentials extends JavaPlugin
 
     private void registerCommands()
     {
-        CustomCommandHandler customCommandHandler = CustomCommandHandler.getInstance();
-        customCommandHandler.registerCommand(new FeedCommand(), this);
-        customCommandHandler.registerCommand(new HelpCommand(), this);
-        customCommandHandler.registerCommand(new GamemodeCommand(), this);
-        customCommandHandler.registerCommand(new HealCommand(), this);
-        customCommandHandler.registerCommand(new SpeedCommand(), this);
-        customCommandHandler.registerCommand(new ClearInventoryCommand(), this);
-        customCommandHandler.registerCommand(new TeleportCommand(), this);
-        customCommandHandler.registerCommand(new TeleportHereCommand(), this);
-        customCommandHandler.registerCommand(new TeleportPositionCommand(), this);
-
         CommandHandler commandHandler = CommandHandler.getInstance();
         commandHandler.registerCommand(new ListCommand(), this);
         commandHandler.registerCommand(new WeatherCommand(), this);
@@ -83,6 +71,15 @@ public class DesireEssentials extends JavaPlugin
         commandHandler.registerCommand(new RespondCommand(), this);
         commandHandler.registerCommand(new BalanceCommand(), this);
         commandHandler.registerCommand(new PayCommand(), this);
+        commandHandler.registerCommand(new FeedCommand(), this);
+        commandHandler.registerCommand(new GamemodeCommand(), this);
+        commandHandler.registerCommand(new ClearInventoryCommand(), this);
+        commandHandler.registerCommand(new HealCommand(), this);
+        commandHandler.registerCommand(new SpeedCommand(), this);
+        commandHandler.registerCommand(new HelpCommand(), this);
+        commandHandler.registerCommand(new TeleportCommand(), this);
+        commandHandler.registerCommand(new TeleportHereCommand(), this);
+        commandHandler.registerCommand(new TeleportPositionCommand(), this);
     }
 
     private void registerListeners()

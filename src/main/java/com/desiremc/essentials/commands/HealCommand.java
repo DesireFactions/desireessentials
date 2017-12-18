@@ -1,41 +1,71 @@
 package com.desiremc.essentials.commands;
 
+import com.desiremc.core.api.newcommands.CommandArgument;
+import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
+import com.desiremc.core.api.newcommands.ValidCommand;
+import com.desiremc.core.newparsers.PlayerParser;
 import com.desiremc.core.session.Rank;
+import com.desiremc.core.session.Session;
+import com.desiremc.essentials.DesireEssentials;
 import com.desiremc.hcf.listener.classes.ClassListener;
 import com.desiremc.hcf.session.HCFSession;
 import com.desiremc.hcf.session.HCFSessionHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 
-public class HealCommand extends PlayerChangeCommand
+import java.util.List;
+
+public class HealCommand extends ValidCommand
 {
 
     public HealCommand()
     {
-        super("heal", "Heal yourself completely.", Rank.ADMIN, new String[] {}, new String[] {});
+        super("heal", "Heal yourself completely.", Rank.ADMIN, new String[] {});
+
+        addArgument(CommandArgumentBuilder.createBuilder(Player.class)
+                .setName("target")
+                .setParser(new PlayerParser())
+                .setAllowsConsole()
+                .setOptional()
+                .build());
     }
 
     @Override
-    public Object[] applyChanges(Player p, Object[] args)
+    public void validRun(Session sender, String[] label, List<CommandArgument<?>> arguments)
     {
-        p.setFoodLevel(20);
-        p.setSaturation(10);
-        p.setExhaustion(0);
-        p.setHealth(p.getMaxHealth());
-        p.setFireTicks(0);
-        for (PotionEffect effect : p.getActivePotionEffects())
+        Player player;
+
+        if (arguments.get(1).hasValue())
         {
-            p.removePotionEffect(effect.getType());
+            player = (Player) arguments.get(1).getValue();
+        }
+        else
+        {
+            player = sender.getPlayer();
         }
 
-        HCFSession session = HCFSessionHandler.getHCFSession(p.getUniqueId());
-
-        if(session.getPvpClass() != null)
+        if (player != sender.getSender())
         {
-            ClassListener.applyPermanentEffects(session.getPvpClass(), p);
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others");
+        }
+        DesireEssentials.getLangHandler().sendRenderMessage(player, name.toLowerCase() + ".self");
+
+        player.setFoodLevel(20);
+        player.setSaturation(10);
+        player.setExhaustion(0);
+        player.setHealth(player.getMaxHealth());
+        player.setFireTicks(0);
+        for (PotionEffect effect : player.getActivePotionEffects())
+        {
+            player.removePotionEffect(effect.getType());
         }
 
-        return new Object[] {};
+        HCFSession session = HCFSessionHandler.getHCFSession(player.getUniqueId());
+
+        if (session.getPvpClass() != null)
+        {
+            ClassListener.applyPermanentEffects(session.getPvpClass(), player);
+        }
     }
 
 }
