@@ -1,39 +1,76 @@
 package com.desiremc.essentials.commands;
 
+import java.util.List;
+
 import org.bukkit.entity.Player;
 
-import com.desiremc.core.parsers.IntegerParser;
+import com.desiremc.core.api.newcommands.CommandArgument;
+import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
+import com.desiremc.core.api.newcommands.ValidCommand;
+import com.desiremc.core.newparsers.PlayerParser;
+import com.desiremc.core.newparsers.PositiveIntegerParser;
+import com.desiremc.core.newvalidators.NumberSizeValidator;
 import com.desiremc.core.session.Rank;
-import com.desiremc.core.validators.IntegerSizeValidator;
+import com.desiremc.core.session.Session;
+import com.desiremc.essentials.DesireEssentials;
 
-public class SpeedCommand extends PlayerChangeCommand
+public class SpeedCommand extends ValidCommand
 {
 
     public SpeedCommand()
     {
-        super("speed", "Change your speed.", Rank.ADMIN, new String[] { "speed" }, new String[] {});
+        super("speed", "Change your speed.", Rank.ADMIN);
 
-        addParser(new IntegerParser(), "speed");
+        addArgument(CommandArgumentBuilder.createBuilder(Integer.class)
+                .setName("speed")
+                .setParser(new PositiveIntegerParser())
+                .addValidator(new NumberSizeValidator<Integer>(1, 10))
+                .build());
 
-        addValidator(new IntegerSizeValidator(1, 10), "speed");
+        addArgument(CommandArgumentBuilder.createBuilder(Player.class)
+                .setName("target")
+                .setParser(new PlayerParser())
+                .setAllowsConsole()
+                .setOptional()
+                .build());
     }
 
     @Override
-    public Object[] applyChanges(Player p, Object[] args)
+    public void validRun(Session sender, String[] label, List<CommandArgument<?>> arguments)
     {
-        String type;
-        float speed = (int) args[0];
-        if (p.isFlying())
+        Player player;
+        int speed = (int) arguments.get(0).getValue();
+        if (arguments.get(1).hasValue())
         {
-            p.setFlySpeed(getSpeed(speed, true));
+            player = (Player) arguments.get(1).getValue();
+        }
+        else
+        {
+            player = sender.getPlayer();
+        }
+
+        String type;
+        if (player.isFlying())
+        {
+            player.setFlySpeed(getSpeed(speed, true));
             type = "flying";
         }
         else
         {
-            p.setWalkSpeed(getSpeed(speed, false));
+            player.setWalkSpeed(getSpeed(speed, false));
             type = "walking";
         }
-        return new Object[] { "{speed}", args[0], "{type}", type };
+
+        if (player != sender.getSender())
+        {
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others",
+                    "{speed}", speed,
+                    "{type}", type);
+        }
+        DesireEssentials.getLangHandler().sendRenderMessage(player, name.toLowerCase() + ".self",
+                "{speed}", speed,
+                "{type}", type);
+
     }
 
     private float getSpeed(float userSpeed, final boolean flying)
