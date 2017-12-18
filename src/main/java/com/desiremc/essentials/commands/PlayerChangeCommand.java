@@ -1,41 +1,43 @@
 package com.desiremc.essentials.commands;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import org.bukkit.command.CommandSender;
+import com.desiremc.core.api.newcommands.CommandArgument;
+import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
+import com.desiremc.core.api.newcommands.ValidCommand;
+import com.desiremc.core.newparsers.PlayerParser;
+import com.desiremc.core.session.Rank;
+import com.desiremc.core.session.Session;
+import com.desiremc.essentials.DesireEssentials;
 import org.bukkit.entity.Player;
 
-import com.desiremc.core.api.command.ValidCommand;
-import com.desiremc.core.parsers.PlayerParser;
-import com.desiremc.core.session.Rank;
-import com.desiremc.core.utils.StringUtils;
-import com.desiremc.core.validators.PlayerValidator;
-import com.desiremc.essentials.DesireEssentials;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public abstract class PlayerChangeCommand extends ValidCommand
 {
 
     public PlayerChangeCommand(String name, String description, Rank requiredRank, String[] args, String... aliases)
     {
-        super(name, description, requiredRank, ARITY_OPTIONAL, StringUtils.add(args, "target"), aliases);
+        super(name, description, requiredRank, true, aliases);
 
-        addParser(new PlayerParser(), "target");
-
-        addOptionalNonexistantValidator(new PlayerValidator());
+        addArgument(CommandArgumentBuilder.createBuilder(Player.class)
+                .setName("target")
+                .setOptional()
+                .setParser(new PlayerParser())
+                .build());
     }
 
     @Override
-    public void validRun(CommandSender sender, String label, Object... args)
+    public void validRun(Session sender, String label[], List<CommandArgument<?>> args)
     {
         Player p;
-        if (args.length == this.args.length - 1)
+        if (!args.get(args.size() - 1).hasValue())
         {
             p = (Player) sender;
         }
         else
         {
-            p = (Player) args[args.length - 1];
+            p = (Player) args.get(args.size() - 1).getValue();
         }
         ArrayList<Object> renders = new ArrayList<>(Arrays.asList(applyChanges(p, Arrays.copyOfRange(args, 0, this.args.length - 1))));
         renders.add("{target}");

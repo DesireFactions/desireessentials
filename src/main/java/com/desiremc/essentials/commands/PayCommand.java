@@ -1,37 +1,44 @@
 package com.desiremc.essentials.commands;
 
-import org.bukkit.command.CommandSender;
-
-import com.desiremc.core.api.command.ValidCommand;
-import com.desiremc.core.parsers.DoubleParser;
+import com.desiremc.core.api.newcommands.CommandArgument;
+import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
+import com.desiremc.core.api.newcommands.ValidCommand;
+import com.desiremc.core.newparsers.PositiveDoubleParser;
 import com.desiremc.core.session.Rank;
-import com.desiremc.core.validators.DoubleSizeValidator;
+import com.desiremc.core.session.Session;
 import com.desiremc.essentials.DesireEssentials;
 import com.desiremc.essentials.validators.HasEnoughMoneyValidator;
-import com.desiremc.hcf.parser.PlayerHCFSessionParser;
+import com.desiremc.hcf.parsers.HCFSessionParser;
 import com.desiremc.hcf.session.HCFSession;
 import com.desiremc.hcf.session.HCFSessionHandler;
+
+import java.util.List;
 
 public class PayCommand extends ValidCommand
 {
 
     public PayCommand()
     {
-        super("pay", "Send a player money.", Rank.GUEST, new String[] { "target", "amount" });
+        super("pay", "Send a player money.", Rank.GUEST, new String[] {"target", "amount"});
 
-        addParser(new PlayerHCFSessionParser(), "target");
-        addParser(new DoubleParser(), "amount");
+        addArgument(CommandArgumentBuilder.createBuilder(HCFSession.class)
+                .setName("target")
+                .setParser(new HCFSessionParser())
+                .build());
 
-        addValidator(new DoubleSizeValidator(0, Double.MAX_VALUE), "amount");
-        addValidator(new HasEnoughMoneyValidator(), "amount");
+        addArgument(CommandArgumentBuilder.createBuilder(Double.class)
+                .setName("amount")
+                .setParser(new PositiveDoubleParser())
+                .addValidator(new HasEnoughMoneyValidator())
+                .build());
     }
 
     @Override
-    public void validRun(CommandSender sender, String label, Object... args)
+    public void validRun(Session sender, String label[], List<CommandArgument<?>> args)
     {
-        HCFSession session = HCFSessionHandler.getHCFSession(sender);
-        HCFSession target = (HCFSession) args[0];
-        double amount = (double) args[1];
+        HCFSession session = HCFSessionHandler.getHCFSession(sender.getUniqueId());
+        HCFSession target = (HCFSession) args.get(0).getValue();
+        double amount = Double.parseDouble((String) args.get(1).getValue());
 
         session.withdrawBalance(amount);
         target.depositBalance(amount);

@@ -64,8 +64,6 @@ public class DesireEssentials extends JavaPlugin
     private void registerCommands()
     {
         CustomCommandHandler customCommandHandler = CustomCommandHandler.getInstance();
-        customCommandHandler.registerCommand(new BalanceCommand(), this);
-        customCommandHandler.registerCommand(new PayCommand(), this);
         customCommandHandler.registerCommand(new FeedCommand(), this);
         customCommandHandler.registerCommand(new HelpCommand(), this);
         customCommandHandler.registerCommand(new GamemodeCommand(), this);
@@ -83,6 +81,8 @@ public class DesireEssentials extends JavaPlugin
         commandHandler.registerCommand(new WeatherDownfallCommand(), this);
         commandHandler.registerCommand(new MessageCommand(), this);
         commandHandler.registerCommand(new RespondCommand(), this);
+        commandHandler.registerCommand(new BalanceCommand(), this);
+        commandHandler.registerCommand(new PayCommand(), this);
     }
 
     private void registerListeners()
