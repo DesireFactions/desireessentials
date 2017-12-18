@@ -1,29 +1,27 @@
 package com.desiremc.essentials.commands;
 
-import com.desiremc.core.api.newcommands.CommandArgument;
-import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
-import com.desiremc.core.api.newcommands.ValidCommand;
-import com.desiremc.core.newparsers.PositiveDoubleParser;
-import com.desiremc.core.session.Rank;
-import com.desiremc.core.session.Session;
-import com.desiremc.essentials.DesireEssentials;
-import com.desiremc.essentials.validators.HasEnoughMoneyValidator;
-import com.desiremc.hcf.parsers.HCFSessionParser;
-import com.desiremc.hcf.session.HCFSession;
-import com.desiremc.hcf.session.HCFSessionHandler;
-
 import java.util.List;
 
-public class PayCommand extends ValidCommand
+import com.desiremc.core.api.newcommands.CommandArgument;
+import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
+import com.desiremc.core.newparsers.PositiveDoubleParser;
+import com.desiremc.core.session.Rank;
+import com.desiremc.essentials.DesireEssentials;
+import com.desiremc.essentials.validators.HasEnoughMoneyValidator;
+import com.desiremc.hcf.api.commands.FactionValidCommand;
+import com.desiremc.hcf.parsers.FSessionParser;
+import com.desiremc.hcf.session.FSession;
+
+public class PayCommand extends FactionValidCommand
 {
 
     public PayCommand()
     {
         super("pay", "Send a player money.", Rank.GUEST, new String[] {"target", "amount"});
 
-        addArgument(CommandArgumentBuilder.createBuilder(HCFSession.class)
+        addArgument(CommandArgumentBuilder.createBuilder(FSession.class)
                 .setName("target")
-                .setParser(new HCFSessionParser())
+                .setParser(new FSessionParser())
                 .build());
 
         addArgument(CommandArgumentBuilder.createBuilder(Double.class)
@@ -34,22 +32,21 @@ public class PayCommand extends ValidCommand
     }
 
     @Override
-    public void validRun(Session sender, String label[], List<CommandArgument<?>> args)
+    public void validFactionRun(FSession sender, String label[], List<CommandArgument<?>> args)
     {
-        HCFSession session = HCFSessionHandler.getHCFSession(sender.getUniqueId());
-        HCFSession target = (HCFSession) args.get(0).getValue();
+        FSession target = (FSession) args.get(0).getValue();
         double amount = Double.parseDouble((String) args.get(1).getValue());
 
-        session.withdrawBalance(amount);
+        sender.withdrawBalance(amount);
         target.depositBalance(amount);
 
-        DesireEssentials.getLangHandler().sendRenderMessage(session.getPlayer(), "pay.sent",
+        DesireEssentials.getLangHandler().sendRenderMessage(sender.getPlayer(), "pay.sent",
                 "{amount}", amount,
                 "{player}", target.getName());
 
         DesireEssentials.getLangHandler().sendRenderMessage(target.getPlayer(), "pay.received",
                 "{amount}", amount,
-                "{player}", session.getName());
+                "{player}", sender.getName());
     }
 
 }

@@ -8,8 +8,8 @@ import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
 import com.desiremc.essentials.DesireEssentials;
 import com.desiremc.hcf.listener.classes.ClassListener;
-import com.desiremc.hcf.session.HCFSession;
-import com.desiremc.hcf.session.HCFSessionHandler;
+import com.desiremc.hcf.session.FSession;
+import com.desiremc.hcf.session.FSessionHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 
@@ -61,7 +61,7 @@ public class HealCommand extends ValidCommand
             player.removePotionEffect(effect.getType());
         }
 
-        HCFSession session = HCFSessionHandler.getHCFSession(player.getUniqueId());
+        FSession session = FSessionHandler.getOnlineFSession(player.getUniqueId());
 
         if (session.getPvpClass() != null)
         {

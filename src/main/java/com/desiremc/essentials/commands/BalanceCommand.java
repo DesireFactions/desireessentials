@@ -6,9 +6,9 @@ import com.desiremc.core.api.newcommands.ValidCommand;
 import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
 import com.desiremc.essentials.DesireEssentials;
-import com.desiremc.hcf.parsers.HCFSessionParser;
-import com.desiremc.hcf.session.HCFSession;
-import com.desiremc.hcf.session.HCFSessionHandler;
+import com.desiremc.hcf.parsers.FSessionParser;
+import com.desiremc.hcf.session.FSession;
+import com.desiremc.hcf.session.FSessionHandler;
 
 import java.util.List;
 
@@ -17,11 +17,12 @@ public class BalanceCommand extends ValidCommand
 
     public BalanceCommand()
     {
-        super("balance", "Checks your balance", Rank.GUEST, true, new String[] {"bal", "money"});
+        super("balance", "Checks your balance", Rank.GUEST, true, new String[] { "bal", "money" });
 
-        addArgument(CommandArgumentBuilder.createBuilder(HCFSession.class)
+        addArgument(CommandArgumentBuilder.createBuilder(FSession.class)
                 .setName("target")
-                .setParser(new HCFSessionParser())
+                .setParser(new FSessionParser())
+                .setRequiredRank(Rank.HELPER)
                 .setOptional()
                 .build());
     }
@@ -29,15 +30,15 @@ public class BalanceCommand extends ValidCommand
     @Override
     public void validRun(Session sender, String label[], List<CommandArgument<?>> args)
     {
-        HCFSession session;
+        FSession session;
         if (!args.get(0).hasValue())
         {
-            session = HCFSessionHandler.getHCFSession(sender.getUniqueId());
+            session = FSessionHandler.getOnlineFSession(sender.getUniqueId());
             DesireEssentials.getLangHandler().sendRenderMessage(session.getPlayer(), "balance.self", "{balance}", DesireEssentials.getEconomy().getBalance(session.getPlayer()));
         }
         else
         {
-            session = (HCFSession) args.get(0).getValue();
+            session = (FSession) args.get(0).getValue();
             DesireEssentials.getLangHandler().sendRenderMessage(sender, "balance.others", "{balance}", DesireEssentials.getEconomy().getBalance(session.getName()), "{player}", session.getName());
         }
 
