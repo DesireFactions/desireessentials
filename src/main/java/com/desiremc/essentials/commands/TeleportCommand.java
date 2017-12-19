@@ -7,6 +7,7 @@ import com.desiremc.core.newparsers.PlayerParser;
 import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
 import com.desiremc.essentials.DesireEssentials;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -31,7 +32,12 @@ public class TeleportCommand extends ValidCommand
         Player target = (Player) arguments.get(0).getValue();
         Player player = sender.getPlayer();
 
-        player.teleport(target);
+        Location loc = target.getLocation();
+
+        loc.setPitch(player.getLocation().getPitch());
+        loc.setYaw(player.getLocation().getYaw());
+
+        player.teleport(loc);
 
         DesireEssentials.getLangHandler().sendRenderMessage(player, "teleport.self",
                 "{target}", target.getName());
