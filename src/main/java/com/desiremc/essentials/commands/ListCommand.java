@@ -32,7 +32,7 @@ public class ListCommand extends ValidCommand
     {
         StringBuilder sb = new StringBuilder();
 
-        for (Session s : SessionHandler.getStaff())
+        for (Session s : SessionHandler.getOnlineStaff())
         {
             sb.append("§e" + s.getName() + ", ");
         }
