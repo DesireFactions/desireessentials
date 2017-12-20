@@ -41,7 +41,7 @@ public class WeatherClearCommand extends ValidCommand
     public void validRun(Session sender, String[] label, List<CommandArgument<?>> arguments)
     {
         List<World> worlds = new ArrayList<>();
-        int duration = arguments.get(0).hasValue() ? (Integer) arguments.get(0).getValue() : DesireEssentials.getConfigHandler().getInteger("weather.default_duration") * 1000;
+        long duration = arguments.get(0).hasValue() ? (Long) arguments.get(0).getValue() : DesireEssentials.getConfigHandler().getInteger("weather.default_duration") * 1000;
         if (arguments.get(1).hasValue())
         {
             worlds.add((World) arguments.get(1).getValue());
@@ -54,12 +54,12 @@ public class WeatherClearCommand extends ValidCommand
         {
             worlds.addAll(Bukkit.getWorlds());
         }
-
+        duration /= 50;
         for (World world : worlds)
         {
             world.setStorm(false);
             world.setThundering(false);
-            world.setWeatherDuration(duration / 50);
+            world.setWeatherDuration((int) Long.min(Integer.MAX_VALUE, duration));
         }
 
         DesireEssentials.getLangHandler().sendRenderMessage(sender, "weather",
