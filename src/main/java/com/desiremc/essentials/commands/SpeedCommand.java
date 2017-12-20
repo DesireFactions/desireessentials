@@ -1,5 +1,9 @@
 package com.desiremc.essentials.commands;
 
+import java.util.List;
+
+import org.bukkit.entity.Player;
+
 import com.desiremc.core.api.newcommands.CommandArgument;
 import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
 import com.desiremc.core.api.newcommands.ValidCommand;
@@ -9,9 +13,6 @@ import com.desiremc.core.newvalidators.NumberSizeValidator;
 import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
 import com.desiremc.essentials.DesireEssentials;
-import org.bukkit.entity.Player;
-
-import java.util.List;
 
 public class SpeedCommand extends ValidCommand
 {
@@ -38,7 +39,7 @@ public class SpeedCommand extends ValidCommand
     public void validRun(Session sender, String[] label, List<CommandArgument<?>> arguments)
     {
         Player player;
-        int speed = Integer.parseInt((String) arguments.get(0).getValue());
+        int speed = (Integer) arguments.get(0).getValue();
 
         if (arguments.get(1).hasValue())
         {
