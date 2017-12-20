@@ -1,6 +1,6 @@
 balance:
-  self: '&bBalance: &a{balance}'
-  others: '&b{player}''s balance: &a{balance}'
+  self: '&bBalance: $&a{balance}'
+  others: '&b{player}''s balance: $&a{balance}'
 message:
   sending: '&8[&7To {rankColor}{player}&8] &7{message}'
   receiving: '&8[&7From {rankColor}{player}&8] &7{message}'
