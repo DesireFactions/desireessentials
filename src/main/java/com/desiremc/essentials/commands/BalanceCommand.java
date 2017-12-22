@@ -5,6 +5,7 @@ import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
 import com.desiremc.core.api.newcommands.ValidCommand;
 import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
+import com.desiremc.core.utils.StringUtils;
 import com.desiremc.essentials.DesireEssentials;
 import com.desiremc.hcf.parsers.FSessionParser;
 import com.desiremc.hcf.session.FSession;
@@ -34,12 +35,15 @@ public class BalanceCommand extends ValidCommand
         if (!args.get(0).hasValue())
         {
             session = FSessionHandler.getOnlineFSession(sender.getUniqueId());
-            DesireEssentials.getLangHandler().sendRenderMessage(session.getPlayer(), "balance.self", "{balance}", DesireEssentials.getEconomy().getBalance(session.getPlayer()));
+            DesireEssentials.getLangHandler().sendRenderMessage(session.getPlayer(), "balance.self",
+                    "{balance}", StringUtils.formatNumber(session.getBalance(), 2, true));
         }
         else
         {
             session = (FSession) args.get(0).getValue();
-            DesireEssentials.getLangHandler().sendRenderMessage(sender, "balance.others", "{balance}", DesireEssentials.getEconomy().getBalance(session.getName()), "{player}", session.getName());
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, "balance.others",
+                    "{balance}", StringUtils.formatNumber(session.getBalance(), 2, true),
+                    "{player}", session.getName());
         }
 
     }
