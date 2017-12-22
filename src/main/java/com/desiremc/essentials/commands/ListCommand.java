@@ -1,15 +1,14 @@
 package com.desiremc.essentials.commands;
 
-import java.util.List;
-
-import org.bukkit.Bukkit;
-
 import com.desiremc.core.api.newcommands.CommandArgument;
 import com.desiremc.core.api.newcommands.ValidCommand;
 import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
 import com.desiremc.core.session.SessionHandler;
 import com.desiremc.essentials.DesireEssentials;
+import org.bukkit.Bukkit;
+
+import java.util.List;
 
 public class ListCommand extends ValidCommand
 {
@@ -32,7 +31,7 @@ public class ListCommand extends ValidCommand
     {
         StringBuilder sb = new StringBuilder();
 
-        for (Session s : SessionHandler.getStaff())
+        for (Session s : SessionHandler.getOnlineStaff())
         {
             sb.append("§e" + s.getName() + ", ");
         }
