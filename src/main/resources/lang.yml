@@ -38,6 +38,9 @@ gamemode:
   invalid: '&7Invalid gamemode.'
   self: '&7Set your gamemode to &c{gamemode}&7.'
   others: '&7Set &b{target}&7''s gamemode to &c{gamemode}&7.'
+fly:
+  self: '&7Set fly mode {status}.'
+  others: '&7Set fly mode {status} for &b{target}&7.'
 help:
   - '&7&m-------------------------------------'
   - '&9Map Information:'

@@ -6,6 +6,7 @@ import com.desiremc.core.api.newcommands.CommandHandler;
 import com.desiremc.essentials.commands.BalanceCommand;
 import com.desiremc.essentials.commands.ClearInventoryCommand;
 import com.desiremc.essentials.commands.FeedCommand;
+import com.desiremc.essentials.commands.FlyCommand;
 import com.desiremc.essentials.commands.GamemodeCommand;
 import com.desiremc.essentials.commands.HealCommand;
 import com.desiremc.essentials.commands.HelpCommand;
@@ -80,6 +81,7 @@ public class DesireEssentials extends JavaPlugin
         commandHandler.registerCommand(new TeleportCommand(), this);
         commandHandler.registerCommand(new TeleportHereCommand(), this);
         commandHandler.registerCommand(new TeleportPositionCommand(), this);
+        commandHandler.registerCommand(new FlyCommand(), this);
     }
 
     private void registerListeners()
