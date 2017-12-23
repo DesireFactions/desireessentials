@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.desiremc.core.api.newcommands.CommandArgument;
 import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
-import com.desiremc.core.newparsers.PositiveDoubleParser;
+import com.desiremc.core.parsers.PositiveDoubleParser;
 import com.desiremc.core.session.Rank;
 import com.desiremc.essentials.DesireEssentials;
 import com.desiremc.essentials.validators.HasEnoughMoneyValidator;
