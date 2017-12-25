@@ -21,7 +21,7 @@ public class ListCommand extends ValidCommand
     @Override
     public void validRun(Session sender, String[] label, List<CommandArgument<?>> arguments)
     {
-        DesireEssentials.getLangHandler().sendRenderMessage(sender, "list.format",
+        DesireEssentials.getLangHandler().sendRenderMessage(sender, "list.format", true, false,
                 "{online}", Bukkit.getOnlinePlayers().size(),
                 "{slots}", Bukkit.getMaxPlayers(),
                 "{staff}", getOnlineStaff());

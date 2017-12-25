@@ -36,12 +36,12 @@ public class MessageCommand extends ValidCommand
         history.put(sender.getUniqueId(), target.getUniqueId());
         history.put(target.getUniqueId(), sender.getUniqueId());
 
-        DesireEssentials.getLangHandler().sendRenderMessage(sender, "message.sending",
+        DesireEssentials.getLangHandler().sendRenderMessage(sender, "message.sending", true, false,
                 "{rankColor}", target.getRank().getColor().toString(),
                 "{player}", target.getName(),
                 "{message}", message);
 
-        DesireEssentials.getLangHandler().sendRenderMessage(target, "message.receiving",
+        DesireEssentials.getLangHandler().sendRenderMessage(target, "message.receiving", true, false,
                 "{rankColor}", sender.getRank().getColor().toString(),
                 "{player}", sender.getName(),
                 "{message}", message);

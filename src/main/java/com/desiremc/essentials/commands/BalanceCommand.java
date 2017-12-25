@@ -35,13 +35,13 @@ public class BalanceCommand extends ValidCommand
         if (!args.get(0).hasValue())
         {
             session = FSessionHandler.getOnlineFSession(sender.getUniqueId());
-            DesireEssentials.getLangHandler().sendRenderMessage(session.getPlayer(), "balance.self",
+            DesireEssentials.getLangHandler().sendRenderMessage(session.getPlayer(), "balance.self", true, false,
                     "{balance}", StringUtils.formatNumber(session.getBalance(), 2, true));
         }
         else
         {
             session = (FSession) args.get(0).getValue();
-            DesireEssentials.getLangHandler().sendRenderMessage(sender, "balance.others",
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, "balance.others", true, false,
                     "{balance}", StringUtils.formatNumber(session.getBalance(), 2, true),
                     "{player}", session.getName());
         }

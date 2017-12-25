@@ -62,7 +62,7 @@ public class WeatherClearCommand extends ValidCommand
             world.setWeatherDuration((int) Long.min(Integer.MAX_VALUE, duration));
         }
 
-        DesireEssentials.getLangHandler().sendRenderMessage(sender, "weather",
+        DesireEssentials.getLangHandler().sendRenderMessage(sender, "weather", true, false,
                 "{weather}", "clear",
                 "{worlds}", worldsString(worlds),
                 "{duration}", DateUtils.formatDateDiff(System.currentTimeMillis() + duration));

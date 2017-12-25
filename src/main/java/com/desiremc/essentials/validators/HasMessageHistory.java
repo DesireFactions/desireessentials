@@ -13,7 +13,7 @@ public class HasMessageHistory implements SenderValidator
     {
         if (!MessageCommand.history.containsKey(sender.getUniqueId()))
         {
-            DesireEssentials.getLangHandler().sendRenderMessage(sender, "respond.no_one");
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, "respond.no_one", true, false);
             return false;
         }
         return true;

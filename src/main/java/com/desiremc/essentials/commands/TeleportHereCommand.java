@@ -39,9 +39,9 @@ public class TeleportHereCommand extends ValidCommand
 
         target.teleport(loc);
 
-        DesireEssentials.getLangHandler().sendRenderMessage(player, "teleport-here.self",
+        DesireEssentials.getLangHandler().sendRenderMessage(player, "teleport-here.self", true, false,
                 "{target}", target.getName());
-        DesireEssentials.getLangHandler().sendRenderMessage(target, "teleport-here.target",
+        DesireEssentials.getLangHandler().sendRenderMessage(target, "teleport-here.target", true, false,
                 "{target}", player.getName());
     }
 

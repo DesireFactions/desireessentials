@@ -42,10 +42,10 @@ public class FeedCommand extends ValidCommand
 
         if (player != sender.getSender())
         {
-            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others",
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others", true, false,
                     "{target}", player.getName());
         }
-        DesireEssentials.getLangHandler().sendRenderMessage(player, name.toLowerCase() + ".self");
+        DesireEssentials.getLangHandler().sendRenderMessage(player, name.toLowerCase() + ".self", true, false);
 
         player.setFoodLevel(20);
         player.setSaturation(10);

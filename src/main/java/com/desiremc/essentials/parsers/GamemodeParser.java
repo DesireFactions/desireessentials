@@ -27,7 +27,7 @@ public class GamemodeParser implements Parser<GameMode>
             return GameMode.ADVENTURE;
         }
 
-        DesireEssentials.getLangHandler().sendRenderMessage(sender, "gamemode.invalid");
+        DesireEssentials.getLangHandler().sendRenderMessage(sender, "gamemode.invalid", true, false);
         return null;
     }
 

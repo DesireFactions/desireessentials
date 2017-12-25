@@ -42,12 +42,12 @@ public class RespondCommand extends ValidCommand
         MessageCommand.history.put(sender.getUniqueId(), receiverSession.getUniqueId());
         MessageCommand.history.put(receiverSession.getUniqueId(), sender.getUniqueId());
 
-        DesireEssentials.getLangHandler().sendRenderMessage(sender, "message.sending",
+        DesireEssentials.getLangHandler().sendRenderMessage(sender, "message.sending", true, false,
                 "{rankColor}", receiverSession.getRank().getColor().toString(),
                 "{player}", receiverSession.getName(),
                 "{message}", message);
 
-        DesireEssentials.getLangHandler().sendRenderMessage(receiverSession, "message.receiving",
+        DesireEssentials.getLangHandler().sendRenderMessage(receiverSession, "message.receiving", true, false,
                 "{rankColor}", sender.getRank().getColor().toString(),
                 "{player}", sender.getName(),
                 "{message}", message);

@@ -66,11 +66,11 @@ public class TeleportPositionCommand extends ValidCommand
 
         if (arguments.size() > 3)
         {
-            DesireEssentials.getLangHandler().sendRenderMessage(player, "teleport_position.world", "{x}", loc.getX(), "{y}", loc.getY(), "{z}", loc.getZ(), "{world}", loc.getWorld().getName());
+            DesireEssentials.getLangHandler().sendRenderMessage(player, "teleport_position.world", true, false, "{x}", loc.getX(), "{y}", loc.getY(), "{z}", loc.getZ(), "{world}", loc.getWorld().getName());
         }
         else
         {
-            DesireEssentials.getLangHandler().sendRenderMessage(player, "teleport_position.no_world", "{x}", loc.getX(), "{y}", loc.getY(), "{z}", loc.getZ());
+            DesireEssentials.getLangHandler().sendRenderMessage(player, "teleport_position.no_world", true, false, "{x}", loc.getX(), "{y}", loc.getY(), "{z}", loc.getZ());
         }
     }
 

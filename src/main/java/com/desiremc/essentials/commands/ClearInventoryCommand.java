@@ -46,10 +46,10 @@ public class ClearInventoryCommand extends ValidCommand
 
         if (player != sender.getSender())
         {
-            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others",
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others", true, false,
                     "{target}", player.getName());
         }
-        DesireEssentials.getLangHandler().sendRenderMessage(player, name.toLowerCase() + ".self");
+        DesireEssentials.getLangHandler().sendRenderMessage(player, name.toLowerCase() + ".self", true, false);
 
         player.getInventory().setContents(new ItemStack[player.getInventory().getContents().length]);
         player.getInventory().setArmorContents(new ItemStack[player.getInventory().getArmorContents().length]);

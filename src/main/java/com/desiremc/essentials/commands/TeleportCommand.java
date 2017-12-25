@@ -39,7 +39,7 @@ public class TeleportCommand extends ValidCommand
 
         player.teleport(loc);
 
-        DesireEssentials.getLangHandler().sendRenderMessage(player, "teleport.self",
+        DesireEssentials.getLangHandler().sendRenderMessage(player, "teleport.self", true, false,
                 "{target}", target.getName());
     }
 

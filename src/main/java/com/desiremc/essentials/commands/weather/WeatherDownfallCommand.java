@@ -63,7 +63,7 @@ public class WeatherDownfallCommand extends ValidCommand
             world.setWeatherDuration(duration / 50);
         }
 
-        DesireEssentials.getLangHandler().sendRenderMessage(sender, "weather",
+        DesireEssentials.getLangHandler().sendRenderMessage(sender, "weather", true, false,
                 "{weather}", "downfall",
                 "{worlds}", worldsString(worlds),
                 "{duration}", DateUtils.formatDateDiff(System.currentTimeMillis() + duration));

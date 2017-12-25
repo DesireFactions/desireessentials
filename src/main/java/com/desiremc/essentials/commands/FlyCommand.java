@@ -56,9 +56,9 @@ public class FlyCommand extends ValidCommand
 
         if (player != sender.getSender())
         {
-            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others",
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others", true, false,
                     "{target}", player.getName(), "{status}", status);
         }
-        DesireEssentials.getLangHandler().sendRenderMessage(player, name.toLowerCase() + ".self", "{status}", status);
+        DesireEssentials.getLangHandler().sendRenderMessage(player, name.toLowerCase() + ".self", true, false, "{status}", status);
     }
 }

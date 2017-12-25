@@ -15,7 +15,7 @@ public class HasEnoughMoneyValidator implements Validator<Double>
         FSession session = FSessionHandler.getGeneralFSession(sender.getUniqueId());
         if (session.getBalance() < arg)
         {
-            DesireEssentials.getLangHandler().sendRenderMessage(sender, "economy.too_poor", "{amount}", arg.toString(), "{balance}", Double.toString(session.getBalance()));
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, "economy.too_poor", true, false, "{amount}", arg.toString(), "{balance}", Double.toString(session.getBalance()));
             return false;
         }
         return true;

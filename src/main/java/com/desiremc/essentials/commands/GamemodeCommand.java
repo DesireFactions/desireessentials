@@ -51,11 +51,11 @@ public class GamemodeCommand extends ValidCommand
 
         if (player != sender.getSender())
         {
-            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others",
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, name.toLowerCase() + ".others", true, false,
                     "{gamemode}", StringUtils.capitalize(gameMode.name().toLowerCase()),
                     "{target}", player.getName());
         }
-        DesireEssentials.getLangHandler().sendRenderMessage(player, name.toLowerCase() + ".self",
+        DesireEssentials.getLangHandler().sendRenderMessage(player, name.toLowerCase() + ".self", true, false,
                 "{gamemode}", StringUtils.capitalize(gameMode.name().toLowerCase()));
 
         player.setGameMode(gameMode);
