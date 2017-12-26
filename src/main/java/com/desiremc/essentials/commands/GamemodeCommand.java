@@ -1,5 +1,11 @@
 package com.desiremc.essentials.commands;
 
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
+
 import com.desiremc.core.api.newcommands.CommandArgument;
 import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
 import com.desiremc.core.api.newcommands.ValidCommand;
@@ -8,18 +14,13 @@ import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
 import com.desiremc.essentials.DesireEssentials;
 import com.desiremc.essentials.parsers.GamemodeParser;
-import org.apache.commons.lang.StringUtils;
-import org.bukkit.GameMode;
-import org.bukkit.entity.Player;
-
-import java.util.List;
 
 public class GamemodeCommand extends ValidCommand
 {
 
     public GamemodeCommand()
     {
-        super("gamemode", "Changes your gamemode.", Rank.ADMIN, new String[] {"gm"});
+        super("gamemode", "Changes your gamemode.", Rank.ADMIN, true, new String[] {"gm"});
 
         addArgument(CommandArgumentBuilder.createBuilder(GameMode.class)
                 .setName("gamemode")

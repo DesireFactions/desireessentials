@@ -1,5 +1,10 @@
 package com.desiremc.essentials.commands;
 
+import java.util.List;
+
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
+
 import com.desiremc.core.api.newcommands.CommandArgument;
 import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
 import com.desiremc.core.api.newcommands.ValidCommand;
@@ -10,17 +15,13 @@ import com.desiremc.core.session.SessionHandler;
 import com.desiremc.core.utils.PlayerUtils;
 import com.desiremc.essentials.DesireEssentials;
 import com.desiremc.essentials.validators.HasMessageHistory;
-import org.bukkit.Sound;
-import org.bukkit.entity.Player;
-
-import java.util.List;
 
 public class RespondCommand extends ValidCommand
 {
 
     public RespondCommand()
     {
-        super("respond", "Respond to a message.", Rank.GUEST, new String[] {"r", "reply"});
+        super("respond", "Respond to a message.", Rank.GUEST, true, new String[] {"r", "reply"});
 
         addSenderValidator(new HasMessageHistory());
 

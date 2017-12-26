@@ -1,5 +1,7 @@
 package com.desiremc.essentials.commands;
 
+import java.util.List;
+
 import com.desiremc.core.api.newcommands.CommandArgument;
 import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
 import com.desiremc.core.api.newcommands.ValidCommand;
@@ -10,8 +12,6 @@ import com.desiremc.essentials.DesireEssentials;
 import com.desiremc.hcf.parsers.FSessionParser;
 import com.desiremc.hcf.session.FSession;
 import com.desiremc.hcf.session.FSessionHandler;
-
-import java.util.List;
 
 public class BalanceCommand extends ValidCommand
 {
@@ -24,6 +24,7 @@ public class BalanceCommand extends ValidCommand
                 .setName("target")
                 .setParser(new FSessionParser())
                 .setRequiredRank(Rank.HELPER)
+                .setAllowsConsole()
                 .setOptional()
                 .build());
     }

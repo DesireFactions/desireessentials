@@ -1,5 +1,10 @@
 package com.desiremc.essentials.commands;
 
+import java.util.List;
+
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
 import com.desiremc.core.api.newcommands.CommandArgument;
 import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
 import com.desiremc.core.api.newcommands.ValidCommand;
@@ -8,10 +13,6 @@ import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
 import com.desiremc.essentials.DesireEssentials;
 import com.desiremc.hcf.listener.classes.ClassListener;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-
-import java.util.List;
 
 
 public class ClearInventoryCommand extends ValidCommand
@@ -19,7 +20,7 @@ public class ClearInventoryCommand extends ValidCommand
 
     public ClearInventoryCommand()
     {
-        super("clearinventory", "Clears your inventory,", Rank.GUEST, new String[] {"ci"});
+        super("clearinventory", "Clears your inventory,", Rank.GUEST, true, new String[] {"ci"});
 
         addArgument(CommandArgumentBuilder.createBuilder(Player.class)
                 .setName("target")

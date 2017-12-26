@@ -1,5 +1,11 @@
 package com.desiremc.essentials.commands;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
+
+import org.bukkit.Sound;
+
 import com.desiremc.core.api.newcommands.CommandArgument;
 import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
 import com.desiremc.core.api.newcommands.ValidCommand;
@@ -8,11 +14,6 @@ import com.desiremc.core.parsers.StringParser;
 import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
 import com.desiremc.essentials.DesireEssentials;
-import org.bukkit.Sound;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
 
 public class MessageCommand extends ValidCommand
 {
@@ -21,10 +22,16 @@ public class MessageCommand extends ValidCommand
 
     public MessageCommand()
     {
-        super("message", "Message another player", Rank.GUEST, new String[] {"msg"});
+        super("message", "Message another player", Rank.GUEST, true, new String[] {"msg"});
 
-        addArgument(CommandArgumentBuilder.createBuilder(Session.class).setName("target").setParser(new SessionParser()).build());
-        addArgument(CommandArgumentBuilder.createBuilder(String.class).setName("message").setParser(new StringParser()).build());
+        addArgument(CommandArgumentBuilder.createBuilder(Session.class)
+                .setName("target")
+                .setParser(new SessionParser())
+                .build());
+        addArgument(CommandArgumentBuilder.createBuilder(String.class)
+                .setName("message")
+                .setParser(new StringParser())
+                .build());
     }
 
     @Override

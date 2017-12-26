@@ -1,5 +1,9 @@
 package com.desiremc.essentials.commands;
 
+import java.util.List;
+
+import org.bukkit.entity.Player;
+
 import com.desiremc.core.api.newcommands.CommandArgument;
 import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
 import com.desiremc.core.api.newcommands.ValidCommand;
@@ -7,15 +11,12 @@ import com.desiremc.core.parsers.PlayerParser;
 import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
 import com.desiremc.essentials.DesireEssentials;
-import org.bukkit.entity.Player;
-
-import java.util.List;
 
 public class FlyCommand extends ValidCommand
 {
     public FlyCommand()
     {
-        super("fly", "Turn on/off fly mode.", Rank.ADMIN, new String[] {});
+        super("fly", "Turn on/off fly mode.", Rank.ADMIN, true, new String[] {});
 
         addArgument(CommandArgumentBuilder.createBuilder(Player.class)
                 .setName("target")

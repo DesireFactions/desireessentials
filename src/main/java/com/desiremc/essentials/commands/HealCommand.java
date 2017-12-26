@@ -1,5 +1,10 @@
 package com.desiremc.essentials.commands;
 
+import java.util.List;
+
+import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+
 import com.desiremc.core.api.newcommands.CommandArgument;
 import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
 import com.desiremc.core.api.newcommands.ValidCommand;
@@ -10,17 +15,13 @@ import com.desiremc.essentials.DesireEssentials;
 import com.desiremc.hcf.listener.classes.ClassListener;
 import com.desiremc.hcf.session.FSession;
 import com.desiremc.hcf.session.FSessionHandler;
-import org.bukkit.entity.Player;
-import org.bukkit.potion.PotionEffect;
-
-import java.util.List;
 
 public class HealCommand extends ValidCommand
 {
 
     public HealCommand()
     {
-        super("heal", "Heal yourself completely.", Rank.ADMIN, new String[] {});
+        super("heal", "Heal yourself completely.", Rank.ADMIN, true, new String[] {});
 
         addArgument(CommandArgumentBuilder.createBuilder(Player.class)
                 .setName("target")
