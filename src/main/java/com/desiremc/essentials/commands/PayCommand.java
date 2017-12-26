@@ -1,5 +1,7 @@
 package com.desiremc.essentials.commands;
 
+import java.util.List;
+
 import com.desiremc.core.api.newcommands.CommandArgument;
 import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
 import com.desiremc.core.parsers.PositiveDoubleParser;
@@ -9,8 +11,6 @@ import com.desiremc.essentials.validators.HasEnoughMoneyValidator;
 import com.desiremc.hcf.api.commands.FactionValidCommand;
 import com.desiremc.hcf.parsers.FSessionParser;
 import com.desiremc.hcf.session.FSession;
-
-import java.util.List;
 
 public class PayCommand extends FactionValidCommand
 {
@@ -35,16 +35,20 @@ public class PayCommand extends FactionValidCommand
     public void validFactionRun(FSession sender, String label[], List<CommandArgument<?>> args)
     {
         FSession target = (FSession) args.get(0).getValue();
-        double amount = Double.parseDouble((String) args.get(1).getValue());
+        double amount = ((Number) args.get(1).getValue()).doubleValue();
 
-        sender.withdrawBalance(amount);
+        if (!sender.isConsole())
+        {
+            sender.withdrawBalance(amount);
+        }
+
         target.depositBalance(amount);
 
-        DesireEssentials.getLangHandler().sendRenderMessage(sender.getPlayer(), "pay.sent", true, false,
+        DesireEssentials.getLangHandler().sendRenderMessage(sender, "pay.sent", true, false,
                 "{amount}", amount,
                 "{player}", target.getName());
 
-        DesireEssentials.getLangHandler().sendRenderMessage(target.getPlayer(), "pay.received", true, false,
+        DesireEssentials.getLangHandler().sendRenderMessage(target, "pay.received", true, false,
                 "{amount}", amount,
                 "{player}", sender.getName());
     }
