@@ -23,7 +23,7 @@ public class MessageCommand extends ValidCommand
 
     public MessageCommand()
     {
-        super("message", "Message another player", Rank.GUEST, true, new String[] {"msg"});
+        super("message", "Message another player", Rank.GUEST, true, new String[] {"msg", "m"});
 
         addArgument(CommandArgumentBuilder.createBuilder(Session.class)
                 .setName("target")
