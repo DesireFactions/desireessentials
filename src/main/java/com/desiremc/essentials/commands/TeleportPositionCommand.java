@@ -56,6 +56,7 @@ public class TeleportPositionCommand extends ValidCommand
         double y = (Double) arguments.get(1).getValue();
         double z = (Double) arguments.get(2).getValue();
 
+
         Location loc = player.getLocation().clone();
 
         loc.setX(x);
