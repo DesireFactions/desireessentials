@@ -1,6 +1,19 @@
 balance:
   self: '&bBalance: &a${balance}'
   others: '&b{player}''s balance: &a${balance}'
+economy:
+  deposit:
+    confirm: '&7Gave &a${amount}&7 to &b{target}&7.'
+    target: '&7Received &a${amount}&7.'
+    self: '&7Added &a${amount} to your balance.'
+  withdraw:
+    confirm: '&7Removed &a${amount}&7 from &b{target}&7.'
+    target: '&7Balanced decreased &a${amount}&7.'
+    self: '&7Removed &a${amount} from your balance.'
+  set:
+    confirm: '&7Set &b{target}&7''s balance to &a${amount}&7.'
+    target: '&7Balance set to &a${amount}&7.'
+    self: '&7Set your balance to &a${amount}&7.'
 message:
   sending: '&8[&7To {rankColor}{player}&8] &7{message}'
   receiving: '&8[&7From {rankColor}{player}&8] &7{message}'

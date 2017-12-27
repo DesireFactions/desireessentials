@@ -1,5 +1,10 @@
 package com.desiremc.essentials;
 
+import java.io.File;
+
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
+
 import com.desiremc.core.api.FileHandler;
 import com.desiremc.core.api.LangHandler;
 import com.desiremc.core.api.newcommands.CommandHandler;
@@ -18,14 +23,12 @@ import com.desiremc.essentials.commands.SpeedCommand;
 import com.desiremc.essentials.commands.TeleportCommand;
 import com.desiremc.essentials.commands.TeleportHereCommand;
 import com.desiremc.essentials.commands.TeleportPositionCommand;
+import com.desiremc.essentials.commands.economy.EconomyCommand;
 import com.desiremc.essentials.commands.weather.WeatherClearCommand;
 import com.desiremc.essentials.commands.weather.WeatherCommand;
 import com.desiremc.essentials.commands.weather.WeatherDownfallCommand;
-import net.milkbowl.vault.economy.Economy;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
+import net.milkbowl.vault.economy.Economy;
 
 public class DesireEssentials extends JavaPlugin
 {
@@ -82,6 +85,7 @@ public class DesireEssentials extends JavaPlugin
         commandHandler.registerCommand(new TeleportHereCommand(), this);
         commandHandler.registerCommand(new TeleportPositionCommand(), this);
         commandHandler.registerCommand(new FlyCommand(), this);
+        commandHandler.registerCommand(new EconomyCommand(), this);
     }
 
     private void registerListeners()
