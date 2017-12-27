@@ -58,7 +58,7 @@ fly:
 help:
   - '&7&m-------------------------------------'
   - '&9Map Information:'
-  - '&eCurrent map: &7SOTW commenced Dec 24nd @ 3 pm EST'
+  - '&eCurrent map: &7SOTW commenced Dec 30th @ 3 pm EST'
   - '&eMap border: &73000'
   - '&eWarzone until: &7500 '
   - '&eEnd portals: &71000, 1000 in each quadrant'
@@ -67,6 +67,7 @@ help:
   - '&eTeamspeak: &7ts.desirehcf.com'
   - '&eDiscord: &7https://discord.gg/n7f3rUd'
   - '&eReddit: &7reddit.com/r/desiremc'
+  - '&eShop: &7shop.desirehcf.com'
 weather: '&7Set the weather to &e{weather}&7 in &e{worlds}&7 for &e{duration}&7.'
 respond:
   no_one: '&7You have no one to reply to.'
