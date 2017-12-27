@@ -1,5 +1,11 @@
 package com.desiremc.essentials.commands;
 
+import java.util.List;
+
+import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.entity.Player;
+
 import com.desiremc.core.api.newcommands.CommandArgument;
 import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
 import com.desiremc.core.api.newcommands.ValidCommand;
@@ -8,11 +14,6 @@ import com.desiremc.core.parsers.WorldParser;
 import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
 import com.desiremc.essentials.DesireEssentials;
-import org.bukkit.Location;
-import org.bukkit.World;
-import org.bukkit.entity.Player;
-
-import java.util.List;
 
 public class TeleportPositionCommand extends ValidCommand
 {
@@ -47,9 +48,9 @@ public class TeleportPositionCommand extends ValidCommand
     {
         Player player = sender.getPlayer();
 
-        double x = Double.parseDouble((String) arguments.get(0).getValue());
-        double y = Double.parseDouble((String) arguments.get(1).getValue());
-        double z = Double.parseDouble((String) arguments.get(2).getValue());
+        double x = ((Number) arguments.get(0).getValue()).doubleValue();
+        double y = ((Number) arguments.get(1).getValue()).doubleValue();
+        double z = ((Number) arguments.get(2).getValue()).doubleValue();
 
         Location loc = player.getLocation().clone();
 
