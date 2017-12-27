@@ -13,6 +13,7 @@ import com.desiremc.core.parsers.SessionParser;
 import com.desiremc.core.parsers.StringParser;
 import com.desiremc.core.session.Rank;
 import com.desiremc.core.session.Session;
+import com.desiremc.core.session.SessionSetting;
 import com.desiremc.essentials.DesireEssentials;
 
 public class MessageCommand extends ValidCommand
@@ -39,6 +40,12 @@ public class MessageCommand extends ValidCommand
     {
         Session target = (Session) args.get(0).getValue();
         String message = (String) args.get(1).getValue();
+
+        if (!target.getSetting(SessionSetting.MESSAGES) && !sender.getRank().isStaff())
+        {
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, "message.disabled", true, false);
+            return;
+        }
 
         history.put(sender.getUniqueId(), target.getUniqueId());
         history.put(target.getUniqueId(), sender.getUniqueId());
