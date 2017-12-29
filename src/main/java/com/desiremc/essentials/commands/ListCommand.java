@@ -34,7 +34,6 @@ public class ListCommand extends ValidCommand
 
         for (Session s : SessionHandler.getOnlineStaff())
         {
-            sb.append("§e");
             sb.append(s.getName());
             sb.append(", ");
         }
@@ -44,7 +43,7 @@ public class ListCommand extends ValidCommand
         }
         else
         {
-            sb.append("§eNone");
+            sb.append("§bNone");
         }
         return sb.toString();
     }
