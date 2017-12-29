@@ -17,13 +17,14 @@ public class FeedCommand extends ValidCommand
 
     public FeedCommand()
     {
-        super("feed", "Fill your hunger bar.", Rank.ADMIN, true, new String[] {"eat"});
+        super("feed", "Fill your hunger bar.", Rank.HELPER, true, new String[] {"eat"});
 
         addArgument(CommandArgumentBuilder.createBuilder(Player.class)
                 .setName("target")
                 .setParser(new PlayerParser())
                 .setAllowsConsole()
                 .setOptional()
+                .setRequiredRank(Rank.ADMIN)
                 .build());
     }
 
