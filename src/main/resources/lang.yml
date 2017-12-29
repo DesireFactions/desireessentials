@@ -34,8 +34,8 @@ teleport_position:
   no_world: '&6You have teleported to &c{x}&6, &c{y}&6, &c{z}&6.'
   self: null
 list:
-  format: '&6There are currently &e{online} &6out of &e{slots} &6players online.{nl}&6Online
-    Staff: &e{staff}&6.'
+  format: '&7There are currently &b{online}&7/&b{slots} &7players online.{nl}&7Online
+    Staff: &b{staff}&7.'
 feed:
   self: '&6Your appetite has been sated.'
   others: '&6You sated the appetite of &c{target}&6.'
