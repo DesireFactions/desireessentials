@@ -32,6 +32,7 @@ public class MessageCommand extends ValidCommand
         addArgument(CommandArgumentBuilder.createBuilder(String.class)
                 .setName("message")
                 .setParser(new StringParser())
+                .setVariableLength()
                 .build());
     }
 
@@ -50,12 +51,12 @@ public class MessageCommand extends ValidCommand
         history.put(sender.getUniqueId(), target.getUniqueId());
         history.put(target.getUniqueId(), sender.getUniqueId());
 
-        DesireEssentials.getLangHandler().sendRenderMessage(sender, "message.sending", true, false,
+        DesireEssentials.getLangHandler().sendRenderMessage(sender, "message.sending", false, false,
                 "{rankColor}", target.getRank().getColor().toString(),
                 "{player}", target.getName(),
                 "{message}", message);
 
-        DesireEssentials.getLangHandler().sendRenderMessage(target, "message.receiving", true, false,
+        DesireEssentials.getLangHandler().sendRenderMessage(target, "message.receiving", false, false,
                 "{rankColor}", sender.getRank().getColor().toString(),
                 "{player}", sender.getName(),
                 "{message}", message);

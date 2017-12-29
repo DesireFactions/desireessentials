@@ -28,6 +28,7 @@ public class RespondCommand extends ValidCommand
         addArgument(CommandArgumentBuilder.createBuilder(String.class)
                 .setName("message")
                 .setParser(new StringParser())
+                .setVariableLength()
                 .build());
 
     }
@@ -43,12 +44,12 @@ public class RespondCommand extends ValidCommand
         MessageCommand.history.put(sender.getUniqueId(), receiverSession.getUniqueId());
         MessageCommand.history.put(receiverSession.getUniqueId(), sender.getUniqueId());
 
-        DesireEssentials.getLangHandler().sendRenderMessage(sender, "message.sending", true, false,
+        DesireEssentials.getLangHandler().sendRenderMessage(sender, "message.sending", false, false,
                 "{rankColor}", receiverSession.getRank().getColor().toString(),
                 "{player}", receiverSession.getName(),
                 "{message}", message);
 
-        DesireEssentials.getLangHandler().sendRenderMessage(receiverSession, "message.receiving", true, false,
+        DesireEssentials.getLangHandler().sendRenderMessage(receiverSession, "message.receiving", false, false,
                 "{rankColor}", sender.getRank().getColor().toString(),
                 "{player}", sender.getName(),
                 "{message}", message);
