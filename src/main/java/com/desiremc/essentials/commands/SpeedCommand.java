@@ -19,7 +19,7 @@ public class SpeedCommand extends ValidCommand
 
     public SpeedCommand()
     {
-        super("speed", "Change your speed.", Rank.ADMIN, true);
+        super("speed", "Change your speed.", Rank.HELPER, true);
 
         addArgument(CommandArgumentBuilder.createBuilder(Integer.class)
                 .setName("speed")
@@ -31,6 +31,7 @@ public class SpeedCommand extends ValidCommand
                 .setName("target")
                 .setParser(new PlayerParser())
                 .setAllowsConsole()
+                .setRequiredRank(Rank.ADMIN)
                 .setOptional()
                 .build());
     }
