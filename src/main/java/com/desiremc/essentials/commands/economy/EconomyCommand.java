@@ -7,7 +7,7 @@ public class EconomyCommand extends ValidBaseCommand
 
     public EconomyCommand()
     {
-        super("economy", "Manage the economy.");
+        super("economy", "Manage the economy.", new String[] { "eco", "econ" });
 
         addSubCommand(new EconomyGiveCommand());
         addSubCommand(new EconomyTakeCommand());
