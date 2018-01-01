@@ -18,7 +18,7 @@ public class BalanceCommand extends ValidCommand
 
     public BalanceCommand()
     {
-        super("balance", "Checks your balance", Rank.GUEST, true, new String[] { "bal", "money" });
+        super("balance", "Checks your balance", Rank.GUEST, true, new String[] {"bal", "money"});
 
         addArgument(CommandArgumentBuilder.createBuilder(FSession.class)
                 .setName("target")
@@ -36,7 +36,7 @@ public class BalanceCommand extends ValidCommand
         if (!args.get(0).hasValue())
         {
             session = FSessionHandler.getOnlineFSession(sender.getUniqueId());
-            DesireEssentials.getLangHandler().sendRenderMessage(session.getPlayer(), "balance.self", true, false,
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, "balance.self", true, false,
                     "{balance}", StringUtils.formatNumber(session.getBalance(), 2, true));
         }
         else
