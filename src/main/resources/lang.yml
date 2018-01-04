@@ -61,7 +61,7 @@ help:
   - ''
   - '&bLaunched: &7Jan 1st @ 3PM EST'
   - '&bMap Border: &73000'
-  - '&bWarzone Border: &7500'
+  - '&bWarzone Border: &71000 (Can build after 350)'
   - '&bEnd Portals: &71000 | 1000 in each quadrant'
   - '&bMap Kit: &7Protection 1, Sharpness 1, Power 2'
   - '&bDeathban: &72 hours'
