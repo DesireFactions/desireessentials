@@ -6,6 +6,7 @@ import com.desiremc.core.api.newcommands.CommandArgument;
 import com.desiremc.core.api.newcommands.CommandArgumentBuilder;
 import com.desiremc.core.parsers.PositiveDoubleParser;
 import com.desiremc.core.session.Rank;
+import com.desiremc.core.validators.NumberSizeValidator;
 import com.desiremc.essentials.DesireEssentials;
 import com.desiremc.essentials.validators.HasEnoughMoneyValidator;
 import com.desiremc.hcf.api.commands.FactionValidCommand;
@@ -28,6 +29,7 @@ public class PayCommand extends FactionValidCommand
                 .setName("amount")
                 .setParser(new PositiveDoubleParser())
                 .addValidator(new HasEnoughMoneyValidator())
+                .addValidator(new NumberSizeValidator<>(1.0, 1000000.0))
                 .build());
     }
 
