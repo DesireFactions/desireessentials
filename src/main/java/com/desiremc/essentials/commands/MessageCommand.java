@@ -30,6 +30,7 @@ public class MessageCommand extends ValidCommand
                 .setParser(new SessionParser())
                 .addValidator(new SenderCanMessageTarget())
                 .build());
+
         addArgument(CommandArgumentBuilder.createBuilder(String.class)
                 .setName("message")
                 .setParser(new StringParser())

@@ -13,7 +13,7 @@ public class SenderCanMessageTarget implements Validator<Session>
     {
         if (!arg.getSetting(SessionSetting.MESSAGES) && !sender.getRank().isStaff())
         {
-            DesireEssentials.getLangHandler().sendRenderMessage(sender, "message.disabled", true, false);
+            DesireEssentials.getLangHandler().sendRenderMessage(sender, "message.disabled", true, false, "{player}", arg.getName());
             return false;
         }
         return true;
